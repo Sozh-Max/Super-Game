@@ -1,0 +1,913 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after {
+  content: '';
+  content: none;
+}
+
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100vh;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 16px;
+  color: #1b005a;
+}
+
+.container {
+  width: 1300px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wrapper {
+  display: -webkit-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-height: 100vh;
+  min-width: 1300px;
+}
+
+.wrapper .main {
+  -webkit-box-flex: 1;
+  -moz-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -ms-flex-preferred-size: auto;
+  flex-basis: auto;
+}
+
+.section_center {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  z-index: 1;
+  opacity: 0;
+  -webkit-transition: 500ms;
+  transition: 500ms;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.section_center.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+.section_center .landing_link {
+  margin-bottom: 20px;
+  font-size: 0;
+}
+
+.section_center .landing_link a {
+  padding: 10px 25px;
+  color: #fff;
+  font-size: 18px;
+  background: #0194e9;
+  -webkit-transition: 100ms;
+  transition: 100ms;
+  text-decoration: none;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.section_center .landing_link a:hover {
+  background: #004fa8;
+}
+
+.main {
+  position: relative;
+  min-height: 650px;
+}
+
+.modal_attack {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 100;
+  display: none;
+}
+
+.modal_attack .modal_content {
+  position: absolute;
+  width: 500px;
+  background: rgba(0, 0, 0, 0.4);
+  margin-left: auto;
+  margin-right: auto;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  border-radius: 15px;
+  text-align: center;
+  padding: 50px 30px 30px;
+  opacity: 0;
+  -webkit-transition: 400ms;
+  transition: 400ms;
+}
+
+.modal_attack .modal_name {
+  color: #fff;
+  font-size: 24px;
+  font-family: "Pangolin", cursive;
+  margin-bottom: 30px;
+}
+
+.modal_attack .btn_content {
+  margin-bottom: 15px;
+}
+
+.modal_attack .btn_fight {
+  margin-left: 15px;
+  margin-right: 15px;
+  font-size: 18px;
+  width: 160px;
+  height: 40px;
+  padding: 8px 25px;
+  border-radius: 15px;
+  cursor: pointer;
+  border: none;
+  color: #fff;
+  font-family: "Pangolin", cursive;
+  -webkit-transition: 200ms;
+  transition: 200ms;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.modal_attack .btn_fight:hover {
+  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+}
+
+.modal_attack .btn_fight.btn_life {
+  background: #ff85d8;
+}
+
+.modal_attack .btn_fight.btn_life:hover {
+  background: #fd3dc0;
+}
+
+.modal_attack .btn_fight.btn_chaos {
+  background: #ffdf60;
+}
+
+.modal_attack .btn_fight.btn_chaos:hover {
+  background: #ffce08;
+}
+
+.modal_attack .btn_fight.btn_shadow {
+  background: #8702ec;
+}
+
+.modal_attack .btn_fight.btn_shadow:hover {
+  background: #3b0068;
+}
+
+.modal_attack.active {
+  display: block;
+}
+
+.modal_attack.show .modal_content {
+  opacity: 1;
+}
+
+/*---welcome_section---*/
+.welcome_section {
+  text-align: center;
+  background: url(../src/img/select_bg.jpg) center repeat;
+}
+
+.welcome_section .container {
+  height: 100%;
+  display: -webkit-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -moz-justify-content: center;
+  justify-content: center;
+}
+
+.welcome_section .welcom_text {
+  font-size: 24px;
+  margin-bottom: 50px;
+}
+
+.welcome_section .welcom_text .welcom_name {
+  font-size: 90px;
+  font-family: "Pangolin", cursive;
+  margin-top: 15px;
+}
+
+.welcome_section .welcom_link .prev_link {
+  margin-bottom: 20px;
+}
+
+.welcome_section .welcom_link .prev_link .to_game {
+  padding: 8px 32px;
+  color: #fff;
+  font-size: 18px;
+  background: #2d0097;
+  -webkit-transition: 100ms;
+  transition: 100ms;
+  text-decoration: none;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+}
+
+.welcome_section .welcom_link .prev_link .to_game:hover {
+  background: #1b005a;
+}
+
+/*---registre_section---*/
+.registre_section {
+  text-align: center;
+  background: url(../src/img/select_bg.jpg) center repeat;
+}
+
+.registre_section .container {
+  height: 100%;
+  display: -webkit-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -moz-justify-content: center;
+  justify-content: center;
+}
+
+.registre_section .prev_link {
+  margin-bottom: 20px;
+}
+
+.registre_section .prev_link .to_game {
+  padding: 8px 32px;
+  color: #fff;
+  font-size: 18px;
+  background: #2d0097;
+  -webkit-transition: 100ms;
+  transition: 100ms;
+  text-decoration: none;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+}
+
+.registre_section .prev_link .to_game:hover {
+  background: #1b005a;
+}
+
+.registre_section .reg_input {
+  width: 350px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.registre_section .reg_input input {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #2d0097;
+  background: #fff;
+  border-radius: 4px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-size: 18px;
+  color: #2d0097;
+}
+
+.registre_section .personal_name {
+  font-size: 40px;
+  font-family: "Pangolin", cursive;
+  margin-bottom: 30px;
+}
+
+/*---select_section---*/
+.select_section {
+  text-align: center;
+  background: url(../src/img/select_bg.jpg) center repeat;
+}
+
+.select_section .container {
+  height: 100%;
+  display: -webkit-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -moz-justify-content: center;
+  justify-content: center;
+}
+
+.select_section .select_fraction {
+  margin-bottom: 45px;
+}
+
+.select_section .select_fraction .fraction_title {
+  font-size: 40px;
+  font-family: "Pangolin", cursive;
+  margin-bottom: 40px;
+}
+
+.select_section .fraction_contain {
+  display: -webkit-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  -moz-justify-content: space-between;
+  justify-content: space-between;
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.select_section .fraction_contain .fraction_col {
+  width: 120px;
+}
+
+.select_section .fraction_contain .fraction_col .fraction_name {
+  margin-bottom: 25px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.select_section .fraction_contain .fraction_block {
+  width: 100%;
+  padding: 8px;
+  -webkit-box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  -webkit-transition: 150ms;
+  transition: 150ms;
+  border: 3px solid #fff;
+}
+
+.select_section .fraction_contain .fraction_block img {
+  width: 100%;
+}
+
+.select_section .fraction_contain .fraction_block:hover {
+  background: white;
+  -webkit-box-shadow: 0 0 25px black;
+          box-shadow: 0 0 25px black;
+}
+
+.select_section .fraction_contain .fraction_block.active {
+  border: 3px solid #b8001f;
+  background: white;
+  -webkit-box-shadow: 0 0 35px #b8001f;
+          box-shadow: 0 0 35px #b8001f;
+}
+
+.select_section .result_link {
+  margin-bottom: 20px;
+}
+
+.select_section .result_link .result {
+  padding: 10px 25px;
+  color: #fff;
+  font-size: 18px;
+  background: #1c009b;
+  -webkit-transition: 100ms;
+  transition: 100ms;
+  text-decoration: none;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.select_section .result_link .result:hover {
+  background: #002147;
+}
+
+.select_section .prev_link .to_go {
+  color: #fff;
+  font-size: 22px;
+  background: #ff0000;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 25px;
+  cursor: pointer;
+  -webkit-transition: 100ms;
+  transition: 100ms;
+}
+
+.select_section .prev_link .to_go:hover {
+  background: #9b0000;
+}
+
+.select_section .salute_text {
+  margin-bottom: 30px;
+  font-size: 22px;
+  text-align: center;
+}
+
+.select_section .salute_text span {
+  font-weight: 700;
+  font-size: 28px;
+}
+
+/*---game_section---*/
+.game_section {
+  padding-top: 0;
+  padding-bottom: 0;
+  text-align: center;
+  background: url(../src/img/gazon.jpg) center repeat;
+  display: -webkit-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.game_section .game_field {
+  -webkit-box-flex: 1;
+  -moz-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -ms-flex-preferred-size: auto;
+  flex-basis: auto;
+  display: -webkit-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  -moz-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -moz-align-items: center;
+  align-items: center;
+  width: 1300px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.game_section .hero {
+  position: relative;
+  height: 300px;
+}
+
+.game_section .hero img {
+  height: 100%;
+}
+
+.game_section .hero.monster_attack:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: url(../src/img/bee.gif) center no-repeat;
+  background-size: contain;
+  z-index: 20;
+}
+
+.game_section .monster {
+  width: 250px;
+  height: 208px;
+  position: relative;
+}
+
+.game_section .monster img {
+  width: auto;
+  height: auto;
+  margin: auto;
+}
+
+.game_section .monster .monster_head {
+  left: 75px;
+  top: 18px;
+  position: absolute;
+  width: 70px;
+  height: 73px;
+}
+
+.game_section .monster .monster_head img {
+  width: 100%;
+}
+
+.game_section .monster .monster_body img {
+  width: 100%;
+}
+
+.game_section .monster .monster_foot {
+  bottom: 0;
+  left: 70px;
+  position: absolute;
+  width: 113px;
+  height: 102px;
+}
+
+.game_section .monster .monster_foot img {
+  width: 100%;
+}
+
+.game_section .monster.chaos:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: url(../src/img/fire.gif) center no-repeat;
+  background-size: cover;
+  z-index: 20;
+}
+
+.game_section .monster.shadow:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: url(../src/img/mouse.gif) center top no-repeat;
+  z-index: 20;
+}
+
+.game_section .monster.life:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: url(../src/img/circle.gif) center no-repeat;
+  background-size: cover;
+  z-index: 20;
+}
+
+.game_section .game_tablo {
+  -webkit-box-flex: 0;
+  -moz-flex-grow: 0;
+  -ms-flex-positive: 0;
+  flex-grow: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -ms-flex-preferred-size: auto;
+  flex-basis: auto;
+  background: #dad3ff;
+}
+
+.game_section .gt_inner {
+  height: 120px;
+  display: -webkit-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  -moz-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -moz-align-items: center;
+  align-items: center;
+}
+
+.game_section .gt_inner .hero_block {
+  width: 440px;
+}
+
+.game_section .gt_inner .hero_block .hero_name {
+  font-size: 22px;
+  min-height: 22px;
+  margin-bottom: 10px;
+  font-family: "Pangolin", cursive;
+  text-align: left;
+  padding-left: 45px;
+  position: relative;
+}
+
+.game_section .gt_inner .hero_block .hero_name.life:before {
+  content: "";
+  width: 22px;
+  height: 22px;
+  top: 0;
+  left: 15px;
+  position: absolute;
+  display: block;
+  background: url(../src/img/ico_life.png) center no-repeat;
+  background-size: 90%;
+}
+
+.game_section .gt_inner .hero_block .hero_name.chaos:before {
+  content: "";
+  width: 22px;
+  height: 22px;
+  top: 0;
+  left: 15px;
+  position: absolute;
+  display: block;
+  background: url(../src/img/ico_chaos.png) center no-repeat;
+  background-size: 90%;
+}
+
+.game_section .gt_inner .hero_block .hero_name.shadow:before {
+  content: "";
+  width: 22px;
+  height: 22px;
+  top: 0;
+  left: 15px;
+  position: absolute;
+  display: block;
+  background: url(../src/img/ico_shadow.png) center no-repeat;
+  background-size: 90%;
+}
+
+.game_section .gt_inner .hero_block .hero_health {
+  height: 30px;
+  width: 100%;
+  border-radius: 15px;
+  text-align: center;
+  position: relative;
+  background: #fff;
+  overflow: hidden;
+}
+
+.game_section .gt_inner .hero_block .hero_health .range {
+  background: #9d83d8;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: 500ms;
+  transition: 500ms;
+}
+
+.game_section .gt_inner .hero_block .hero_health .count {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  line-height: 30px;
+  font-size: 22px;
+  color: #ff0000;
+  font-family: "Pangolin", cursive;
+  z-index: 10;
+}
+
+.game_section .gt_inner .monster_block {
+  width: 440px;
+}
+
+.game_section .gt_inner .monster_block .monster_name {
+  font-size: 22px;
+  min-height: 22px;
+  margin-bottom: 10px;
+  font-family: "Pangolin", cursive;
+  text-align: right;
+  padding-right: 45px;
+  position: relative;
+}
+
+.game_section .gt_inner .monster_block .monster_name.life:before {
+  content: "";
+  width: 22px;
+  height: 22px;
+  top: 0;
+  right: 15px;
+  position: absolute;
+  display: block;
+  background: url(../src/img/ico_life.png) center no-repeat;
+  background-size: 90%;
+}
+
+.game_section .gt_inner .monster_block .monster_name.chaos:before {
+  content: "";
+  width: 22px;
+  height: 22px;
+  top: 0;
+  right: 15px;
+  position: absolute;
+  display: block;
+  background: url(../src/img/ico_chaos.png) center no-repeat;
+  background-size: 90%;
+}
+
+.game_section .gt_inner .monster_block .monster_name.shadow:before {
+  content: "";
+  width: 22px;
+  height: 22px;
+  top: 0;
+  right: 15px;
+  position: absolute;
+  display: block;
+  background: url(../src/img/ico_shadow.png) center no-repeat;
+  background-size: 90%;
+}
+
+.game_section .gt_inner .monster_block .monster_health {
+  height: 30px;
+  width: 100%;
+  border-radius: 15px;
+  text-align: center;
+  position: relative;
+  background: #fff;
+  overflow: hidden;
+}
+
+.game_section .gt_inner .monster_block .monster_health .range {
+  background: #9d83d8;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: 500ms;
+  transition: 500ms;
+}
+
+.game_section .gt_inner .monster_block .monster_health .count {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  line-height: 30px;
+  font-size: 22px;
+  color: #ff0000;
+  font-family: "Pangolin", cursive;
+  z-index: 10;
+}
+
+.game_section .gt_inner .score_block .score_name {
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-family: "Pangolin", cursive;
+}
+
+.game_section .gt_inner .score_block .score_total {
+  font-family: "Pangolin", cursive;
+  font-size: 30px;
+  color: #ff0000;
+}
+
+.game_section .game_panel {
+  -webkit-box-flex: 0;
+  -moz-flex-grow: 0;
+  -ms-flex-positive: 0;
+  flex-grow: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -ms-flex-preferred-size: auto;
+  flex-basis: auto;
+  background: #dad3ff;
+}
+
+.game_section .gp_inner {
+  height: 100px;
+  display: -webkit-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -moz-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -moz-align-items: center;
+  align-items: center;
+}
+
+.game_section .btn_panel {
+  margin-left: 15px;
+  margin-right: 15px;
+  font-size: 18px;
+  padding: 8px 25px;
+  border-radius: 15px;
+  cursor: pointer;
+  border: none;
+  color: #fff;
+  -webkit-transition: 200ms;
+  transition: 200ms;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.game_section .btn_panel:hover {
+  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+}
+
+.game_section .btn_panel.btn_life {
+  background: #ff85d8;
+}
+
+.game_section .btn_panel.btn_life:hover {
+  background: #fd3dc0;
+}
+
+.game_section .btn_panel.btn_chaos {
+  background: #ffdf60;
+}
+
+.game_section .btn_panel.btn_chaos:hover {
+  background: #ffce08;
+}
+
+.game_section .btn_panel.btn_shadow {
+  background: #8702ec;
+}
+
+.game_section .btn_panel.btn_shadow:hover {
+  background: #3b0068;
+}
+/*# sourceMappingURL=index.css.map */

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Super Game</title>
+		<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Pangolin&amp;subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
+		<link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+	<div class="modal_attack" id="modal_attack">
+		<div class="modal_content">
+			<div class="modal_name">
+				Какой магический удар изволите?
+			</div>
+			<div class="btn_content">
+				<button class="btn_fight btn_life" data-fraction="life">Удар Жизни</button>
+			</div>
+			<div class="btn_content">
+				<button class="btn_fight btn_chaos" data-fraction="chaos">Удар Хаоса</button>
+			</div>
+			<div class="btn_content">
+				<button class="btn_fight btn_shadow" data-fraction="shadow">Удар Тьмы</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal_task" id="modal_task">
+		<div class="modal_content">
+			<div class="modal_name">
+				Какой магический удар изволите?
+			</div>
+			
+		</div>
+	</div>
+	
+	<div class="wrapper">
+		<main class="main">
+
+			<section class="welcome_section section_center" id="welcome_section">
+				<div class="container">
+					<div class="welcom_text">
+						<div>Приветствуем Вас в нашей</div> 
+						<div class="welcom_name">
+							Super Game
+						</div>
+					</div>
+					<div class="welcom_link">
+						<div class="landing_link">
+							<a target="_blank" href="#">Презентация и правила</a>
+						</div>
+						<div class="prev_link">
+							<button class="to_game" id="to_registre">К игре</button>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="registre_section section_center" id="registre_section">
+				<div class="container">
+					<div class="pesonal_form">
+						<div class="personal_name">
+							Представьтесь:
+						</div>
+						<form id="personal_form" action="#">
+							<div class="reg_input">
+								<input type="name" id="input_person" placeholder="Ваш никнейм" minlength="3" maxlength="20" required>
+							</div>
+							<div class="landing_link">
+								<a target="_blank" href="#">Презентация и правила</a>
+							</div>
+							<div class="prev_link">
+								<button type="submit" id="personal_apply" class="to_game">Войти в игру</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</section>
+
+			<section class="select_section section_center" id="select_section">
+				<div class="container">
+					<div class="salute_text">
+						Приветствуем Вас, сильный воин <span id="salute_name"></span>
+					</div>
+					<div class="select_fraction">
+						<div class="fraction_title">
+							Выберите фракцию:
+						</div>
+						<div class="fraction_contain">
+							<div class="fraction_col">
+								<div class="fraction_name">Жизнь</div>
+								<div class="fraction_block active" data-fraction="life">
+									<img src="src/img/ico_life.png" alt="">
+								</div>
+							</div>
+							<div class="fraction_col">
+								<div class="fraction_name">Хаос</div>
+								<div class="fraction_block" data-fraction="chaos">
+									<img src="src/img/ico_chaos.png" alt="">
+								</div>								
+							</div>
+							<div class="fraction_col">
+								<div class="fraction_name">Тьма</div>
+								<div class="fraction_block" data-fraction="shadow">
+									<img src="src/img/ico_shadow.png" alt="">
+								</div>								
+							</div>
+						</div>
+					</div>
+					<div class="landing_link">
+						<a target="_blank" href="#">Презентация и правила</a>
+					</div>
+					<div class="result_link">
+						<button class="result" >Таблица результатов</button >
+					</div>
+					<div class="prev_link">
+						<button class="to_go" id="start_game">Начать игру</button>
+					</div>
+				</div>
+			</section>
+
+			<section class="game_section section_center active" id="game_section">
+				<div class="game_tablo">
+					<div class="container">
+						<div class="gt_inner">
+							<div class="hero_block">
+								<div class="hero_name" id="hero_name"></div>
+								<div class="hero_health">
+									<div class="range" id="hero_range"></div>
+									<div class="count"><span id="hero_health"></span> / <span id="hero_health_max"></span></div>
+								</div>
+							</div>
+							<div class="score_block">
+								<div class="score_name">Очки:</div>
+								<div class="score_total" id="score_total"></div>
+							</div>
+							<div class="monster_block">
+								<div class="monster_name" id="monster_name"></div>
+								<div class="monster_health">
+									<div class="range" id="monster_range"></div>
+									<div class="count"><span id="moster_health"></span> / <span id="moster_health_max"></span></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="game_field">
+					<div id="hero" class="hero"></div>
+					<div id="monster" class="monster"></div>
+				</div>
+				<!-- <div class="game_panel">
+					<div class="container">
+						<div class="gp_inner">
+							<button class="btn_panel btn_life">Удар Жизни</button>
+							<button class="btn_panel btn_chaos">Удар Хаоса</button>
+							<button class="btn_panel btn_shadow">Удар Тьмы</button>
+						</div>
+					</div>
+				</div> -->
+			</section>
+
+		</main>
+	</div>
+<script src="dist/js/index.js"></script>
+</body>
+</html>
