@@ -227,7 +227,6 @@ $pangolin: 'Pangolin', cursive;
 	box-sizing: border-box;
 }
 
-
 html,
 body{
 	min-height: 100vh;
@@ -374,6 +373,41 @@ body{
 		}
 	}
 }
+
+.modal_task{
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 101;
+	display: none;
+	background: rgba(0,0,0,0.3);
+	.modal_content{
+		position: absolute;
+		width: 500px;
+		background: rgba(255,255,255,0.7);
+		margin-left: auto;
+		margin-right: auto;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		border-radius: 15px;
+		text-align: center;
+		padding: 50px 30px 30px;
+		opacity: 0;
+		transition: 400ms;
+	}
+	&.active{
+		display: block;
+	}
+	&.show{
+		.modal_content{
+			opacity: 1;
+		}
+	}
+}
+
 
 /*---welcome_section---*/
 

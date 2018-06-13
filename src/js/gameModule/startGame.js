@@ -13,9 +13,9 @@ export default function(){
 	heroFill(fractionHeroValue[global.hero.fraction]);
 	heroView(global.hero.fraction);
 	gamePageFill(monster);
-	//setTimeout(()=>{modalAttack('show')},1000);
-	//fight();
-	taskLoader();
+	setTimeout(()=>{modalAttack('show')},1000);
+	fight();
+
 
 }
 
