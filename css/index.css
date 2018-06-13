@@ -233,12 +233,15 @@ body {
   right: 0;
   z-index: 101;
   display: none;
-  background: rgba(0, 0, 0, 0.3);
+  background: transparent;
+  -webkit-transition: 300ms;
+  transition: 300ms;
+  font-family: "Pangolin", cursive;
 }
 
 .modal_task .modal_content {
   position: absolute;
-  width: 500px;
+  width: 900px;
   background: rgba(255, 255, 255, 0.7);
   margin-left: auto;
   margin-right: auto;
@@ -252,10 +255,85 @@ body {
   opacity: 0;
   -webkit-transition: 400ms;
   transition: 400ms;
+  color: #1b005a;
+}
+
+.modal_task .modal_name {
+  color: #1b005a;
+  font-size: 24px;
+  font-family: "Pangolin", cursive;
+  margin-bottom: 30px;
+}
+
+.modal_task .report_quest {
+  padding-top: 30px;
+  font-size: 20px;
+  color: #5a5a5a;
+}
+
+.modal_task .report_quest .rq_inner {
+  display: none;
+}
+
+.modal_task .report_quest.true {
+  color: #00751d;
+}
+
+.modal_task .report_quest.true .rq_true {
+  display: block;
+}
+
+.modal_task .report_quest.true .rq_start {
+  display: none;
+}
+
+.modal_task .report_quest.false {
+  color: #b8001f;
+}
+
+.modal_task .report_quest.false .rq_false {
+  display: block;
+}
+
+.modal_task .report_quest.false .rq_start {
+  display: none;
+}
+
+.modal_task .report_quest.empty {
+  color: #8702ec;
+}
+
+.modal_task .report_quest.empty .rq_empty {
+  display: block;
+}
+
+.modal_task .report_quest.empty .rq_start {
+  display: none;
+}
+
+.modal_task .task_btn {
+  padding-top: 30px;
+}
+
+.modal_task .task_btn .task_apply {
+  color: #fff;
+  background: #1b005a;
+  font-size: 20px;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 15px;
+  -webkit-transition: 150ms;
+  transition: 150ms;
+  cursor: pointer;
+}
+
+.modal_task .task_btn .task_apply:hover {
+  background: #3a01be;
 }
 
 .modal_task.active {
   display: block;
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .modal_task.show .modal_content {
@@ -946,5 +1024,34 @@ body {
 
 .game_section .btn_panel.btn_shadow:hover {
   background: #3b0068;
+}
+
+/*---task style---*/
+.translateEnglish_task .word_text {
+  font-size: 16px;
+  color: #5a5a5a;
+  margin-bottom: 10px;
+}
+
+.translateEnglish_task .word_block {
+  font-size: 22px;
+  margin-bottom: 30px;
+}
+
+.translateEnglish_task .word_input {
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.translateEnglish_task .word_input .word_answer {
+  width: 100%;
+  height: 34px;
+  border: 1px solid #5a5a5a;
+  color: #5a5a5a;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 5px;
+  font-size: 18px;
 }
 /*# sourceMappingURL=index.css.map */

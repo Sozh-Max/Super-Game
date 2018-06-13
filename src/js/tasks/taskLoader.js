@@ -1,5 +1,5 @@
 import dataTasks from './dataTasks.js';
-import tasksHundler from './tasksHundler.js';
+import tasksHandler from './tasksHandler.js';
 export default function(name){
 	if (name === undefined){
 		let taskName = [];
@@ -7,8 +7,8 @@ export default function(name){
 			taskName.push(index);
 		})
 		name = taskName[_.random(taskName.length - 1)];
-		tasksHundler(name);
-	} else {
-		tasksHundler(name);
 	}
+	return tasksHandler(name).then(result => {
+		return result;
+	});
 }

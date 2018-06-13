@@ -26,6 +26,10 @@ let fightElement = {
 	heroRange: document.getElementById('hero_range'),
 	scoreTotal: document.getElementById('score_total'),
 	btnsFight: document.querySelectorAll('.modal_attack .btn_fight'),
+	tqName: document.getElementById('task_question_name'),
+	taskContainer: document.getElementById('task_container'),
+	taskAply: document.getElementById('task_apply'),
+	reportQuest: document.getElementById('report_quest'),
 }
 
 
