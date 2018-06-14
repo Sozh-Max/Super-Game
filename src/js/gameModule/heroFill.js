@@ -7,4 +7,5 @@ export default function(heroValue){
 	global.hero.damageFactor = _.clone(heroValue.damageFactor);
 	global.hero.defense = _.clone(heroValue.defense);
 	global.hero.score = 0;
+	global.hero.state = true;
 }

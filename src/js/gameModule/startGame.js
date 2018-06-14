@@ -7,15 +7,14 @@ import modalAttack from './modalAttack.js';
 import fight from './fight.js';
 import heroView from '../generators/heroView.js';
 
-import taskLoader from '../tasks/taskLoader.js';
 
 export default function(){
+	monster();
 	heroFill(fractionHeroValue[global.hero.fraction]);
 	heroView(global.hero.fraction);
-	gamePageFill(monster);
+	gamePageFill(global.monster);
 	setTimeout(()=>{modalAttack('show')},1000);
 	fight();
-
 
 }
 

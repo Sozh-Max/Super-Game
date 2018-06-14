@@ -8,6 +8,8 @@ let globalDate = {
 	btnStartGame: document.getElementById('start_game'),
 	inputPerson: document.getElementById('input_person'),
 	saluteName: document.getElementById('salute_name'),
+	hero: document.getElementById('hero'),
+	monster: document.getElementById('monster'),
 };
 
 let hero = {
@@ -19,7 +21,7 @@ let fightElement = {
 	monsterName: document.getElementById('monster_name'),
 	monsterHealth: document.getElementById('moster_health'),
 	monsterHealthMax: document.getElementById('moster_health_max'),
-	monsterRange: document.getElementById('moster_range'),
+	monsterRange: document.getElementById('monster_range'),
 	heroName: document.getElementById('hero_name'),
 	heroHealth: document.getElementById('hero_health'),
 	heroHealthMax: document.getElementById('hero_health_max'),
@@ -30,8 +32,10 @@ let fightElement = {
 	taskContainer: document.getElementById('task_container'),
 	taskAply: document.getElementById('task_apply'),
 	reportQuest: document.getElementById('report_quest'),
-}
+};
+
+let monster = {}
 
 
 
-export default {globalDate, fightElement, hero};
+export default {globalDate, fightElement, hero, monster};
