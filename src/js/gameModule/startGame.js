@@ -1,5 +1,5 @@
 import global from '../config.js';
-import fractionHeroValue from '../fractionSetting/fractionHeroValue';
+import fractionHeroValue from '../fractionSetting/fractionHeroValue.js';
 import heroFill from './heroFill.js';
 import modalAttack from './modalAttack.js';
 import fight from './fight.js';

@@ -44,10 +44,20 @@
 		</div>
 	</div>
 	
+	<div class="modal_result" id="modal_result">
+		<div class="modal_content">
+			<div class="modal_name">Ваш результат:</div>
+			<div class="result_count" id="result_count"></div>
+			<div class="result_btn">
+				<button class="to_result" id="to_result">К списку результатов</button>
+			</div>
+		</div>
+	</div>
+
 	<div class="wrapper">
 		<main class="main">
 
-			<section class="welcome_section section_center" id="welcome_section">
+			<section class="welcome_section section_center active" id="welcome_section">
 				<div class="container">
 					<div class="welcom_text">
 						<div>Приветствуем Вас в нашей</div> 
@@ -121,7 +131,7 @@
 						<a target="_blank" href="#">Презентация и правила</a>
 					</div>
 					<div class="result_link">
-						<button class="result" >Таблица результатов</button >
+						<button class="result" id="table_result">Таблица результатов</button >
 					</div>
 					<div class="prev_link">
 						<button class="to_go" id="start_game">Начать игру</button>
@@ -129,7 +139,7 @@
 				</div>
 			</section>
 
-			<section class="game_section section_center active" id="game_section">
+			<section class="game_section section_center" id="game_section">
 				<div class="game_tablo">
 					<div class="container">
 						<div class="gt_inner">
@@ -157,6 +167,18 @@
 				<div class="game_field">
 					<div id="hero" class="hero"></div>
 					<div id="monster" class="monster"></div>
+				</div>
+			</section>
+
+			<section class="game_result section_center" id="game_result">
+				<div class="container">
+					<div class="result_name">
+						Таблица результатов:
+					</div>
+					<div class="result_block" id="result_block"></div>
+					<div class="return_to_select">
+						<button class="to_select" id="to_select">Вернуться к выбору фракции</button>
+					</div>
 				</div>
 			</section>
 

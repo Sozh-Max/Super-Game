@@ -2,9 +2,11 @@ import global from '../config.js';
 import monsterCreate from '../generators/monsterCreate.js';
 import taskloader from '../tasks/taskloader.js';
 import modalAttack from './modalAttack.js';
+import modalResult from './modalResult.js';
 import modalTask from './modalTask.js';
 import heroAttack from './heroAttack.js';
 import monsterAttack from './monsterAttack.js';
+import resultSave from './resultSave.js';
 
 
 export default function() {
@@ -39,23 +41,18 @@ export default function() {
 					}
 				}).then(() => {
 					setTimeout(() => {
-						
-					}, 4300);
-				}).then(() => {
-					setTimeout(() => {
 						if(global.hero.health <= 0){
-							
-						} else if(global.monster.health <= 0) {
-							console.log(global.monster);
+							resultSave();
+							global.globalDate.resultCount.innerHTML = global.hero.score;
+							setTimeout(()=>{modalResult('show')},1000);
+						} else if (global.monster.health <= 0) {
 							monsterCreate();
 							global.fightElement.monsterRange.style.width = 100 +'%';
-							console.log(global.monster);
 							setTimeout(()=>{modalAttack('show')},1000);
-							
 						} else {
 							attackActive = true;
 						}
-					}, 4400);
+					}, 4200);
 
 				});
 			}

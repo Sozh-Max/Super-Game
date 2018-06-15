@@ -469,6 +469,70 @@ body{
 	}
 }
 
+.modal_result{
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 101;
+	display: none;
+	background: rgba(0,0,0,0);
+	transition: 300ms;
+	font-family: $pangolin;
+	.modal_content{
+		position: absolute;
+		width: 500px;
+		background: rgba(255,255,255,0.7);
+		margin-left: auto;
+		margin-right: auto;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		border-radius: 15px;
+		text-align: center;
+		padding: 50px 30px 30px;
+		opacity: 0;
+		transition: 400ms;
+		color: rgb(27, 0, 90);
+	}
+	.modal_name{
+		color: rgb(27, 0, 90);
+		font-size: 24px;
+		font-family: $pangolin;
+		margin-bottom: 30px;
+	}
+	.result_count{
+		font-size: 30px;
+		font-family: $pangolin;
+		margin-bottom: 30px;
+		color: #ff0000;
+	}
+	.result_btn{
+		.to_result{
+			color: #fff;
+			background: rgb(27, 0, 90);
+			font-size: 20px;
+			border: none;
+			padding: 8px 20px;
+			border-radius: 15px;
+			transition: 150ms;
+			cursor: pointer;
+			&:hover{
+				background: rgb(58, 1, 190);
+			}
+		}
+	}
+	&.active{
+		display: block;
+		background: rgba(0,0,0,0.3);
+	}
+	&.show{
+		.modal_content{
+			opacity: 1;
+		}
+	}
+}
 
 /*---welcome_section---*/
 
@@ -1016,8 +1080,65 @@ body{
 	}
 }
 
+/*---game_result---*/
 
-
+.game_result{
+	text-align: center;
+	background: url(../src/img/select_bg.jpg) center repeat;
+	.container{
+		height: 100%;
+		@include flexbox;
+		@include flex-direction(column);
+		@include justify-content(center);
+	}
+	.result_name{
+		font-weight: 700;
+		font-size: 40px;
+		margin-bottom: 40px;
+		font-family: $pangolin;
+	}
+	.result_block{
+		width: 400px;
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom: 50px;
+		ul{
+			li{
+				list-style: decimal;
+				padding-left: 10px;
+				font-family: $pangolin;
+				margin-bottom: 10px;
+				font-size: 24px;
+				.li_wrap{
+					@include flexbox;
+					@include justify-content(space-between);
+					@include align-items(center);
+				}
+				.name{
+					color: #ff0000;
+					font-size: 30px;
+				}
+				.result{
+					font-weight: 700;
+				}
+			}
+		}
+	}
+	.to_select{
+		padding: 8px 35px;
+		color: #fff;
+		font-size: 18px;
+		background: rgb(45, 0, 151);
+		transition: 100ms;
+		text-decoration: none;
+		border-radius: 20px;
+		border: none;
+		cursor: pointer;
+		&:hover{
+			background: rgb(27, 0, 90);
+		}
+	}
+}
 
 /*---task style---*/
 

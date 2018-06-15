@@ -10,6 +10,12 @@ let globalDate = {
 	saluteName: document.getElementById('salute_name'),
 	hero: document.getElementById('hero'),
 	monster: document.getElementById('monster'),
+	resultBlock: document.getElementById('result_block'),
+	gameResult: document.getElementById('game_result'),
+	toSelect: document.getElementById('to_select'),
+	toResult: document.getElementById('to_result'),
+	tableResult: document.getElementById('table_result'),
+	resultCount: document.getElementById('result_count'),
 };
 
 let hero = {
@@ -36,6 +42,23 @@ let fightElement = {
 
 let monster = {}
 
+let templates = {
+	resultBlock: function(arr){
 
+		let str = ``
+		arr.forEach(function(item, i, arr){
+			let name = arr[i].name;
+			let score = arr[i].score;
+			str +=	`<li>
+								<div class="li_wrap">
+									<div class="name">${name}</div>
+									<div class="result">${score}</div>
+								</div>
+							</li>`
+		});
+		return str;
 
-export default {globalDate, fightElement, hero, monster};
+	}
+}
+
+export default {globalDate, fightElement, hero, monster, templates};
