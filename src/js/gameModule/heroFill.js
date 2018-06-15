@@ -8,4 +8,5 @@ export default function(heroValue){
 	global.hero.defense = _.clone(heroValue.defense);
 	global.hero.score = 0;
 	global.hero.state = true;
+	global.fightElement.scoreTotal.innerHTML = 0;
 }

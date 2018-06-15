@@ -10,5 +10,4 @@ export default function(monster) {
 	global.fightElement.heroHealth.innerHTML = global.hero.health;
 	global.fightElement.heroHealthMax.innerHTML = global.hero.health;
 	global.fightElement.heroName.classList.add(global.hero.fraction);
-	global.fightElement.scoreTotal.innerHTML = 0;
 }

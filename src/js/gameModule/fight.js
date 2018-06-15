@@ -1,4 +1,5 @@
 import global from '../config.js';
+import monsterCreate from '../generators/monsterCreate.js';
 import taskloader from '../tasks/taskloader.js';
 import modalAttack from './modalAttack.js';
 import modalTask from './modalTask.js';
@@ -38,8 +39,24 @@ export default function() {
 					}
 				}).then(() => {
 					setTimeout(() => {
-						attackActive = true;
-					}, 4000);
+						
+					}, 4300);
+				}).then(() => {
+					setTimeout(() => {
+						if(global.hero.health <= 0){
+							
+						} else if(global.monster.health <= 0) {
+							console.log(global.monster);
+							monsterCreate();
+							global.fightElement.monsterRange.style.width = 100 +'%';
+							console.log(global.monster);
+							setTimeout(()=>{modalAttack('show')},1000);
+							
+						} else {
+							attackActive = true;
+						}
+					}, 4400);
+
 				});
 			}
 			btnsKick.forEach(item => {
@@ -52,6 +69,7 @@ export default function() {
 	setInterval(() => {
 		if(attackActive){
 			setTimeout(()=>{modalAttack('show')},1000);
+			attackActive = false;
 		}
 	}, 500);
 }

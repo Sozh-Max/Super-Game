@@ -1,7 +1,7 @@
 import global from '../config.js';
 import modalTask from '../gameModule/modalTask.js';
 
-function templates(word){
+function templateTranslateEnglish(word){
 	return `<div class="translateEnglish_task" id="translateEnglish">
 		<div class="word_text">
 			Переведите с английского на русский слово:
@@ -17,20 +17,17 @@ export default {
 	translateEnglish: function(data){
 		let word = data.word;
 		let answer = data.translate;
-		console.log('prepare answer', answer);
 		global.fightElement.tqName.innerHTML = 'Перевести с английского.';
-		global.fightElement.taskContainer.innerHTML = templates(word);
+		global.fightElement.taskContainer.innerHTML = templateTranslateEnglish(word);
 		function taskDecision() {
 				let value;
 				let result;
 				let inputEnter;
 				return new Promise((resolve, reject) => {
-					console.log('answer after promise', answer);
 					if ( window.clickHandler ) {
 						global.fightElement.taskAply.removeEventListener('click', window.clickHandler);
 					}
 					window.clickHandler = function() {
-						console.log('answer autoclick', answer);
 						if(!this.hasAttribute('data-stop')) {
 							let value = document.querySelector('.translateEnglish_task .word_answer').value;
 							let result;
@@ -41,13 +38,10 @@ export default {
 							}
 							this.setAttribute('data-stop', 'stop');
 							setTimeout(() => { this.removeAttribute('data-stop') }, 5000);
-							console.log('answer before handler', answer);
 							inputEnter = handlerEnter(value);
 
 							result = (inputEnter >= 0) ? true : false;
-							console.log('result',result, inputEnter, value);
 							if(result){
-								console.log('result',result, inputEnter, value);
 								global.fightElement.reportQuest.setAttribute('class', 'report_quest true');
 								setTimeout(() => {
 									global.fightElement.reportQuest.setAttribute('class', 'report_quest');
@@ -72,7 +66,6 @@ export default {
 							}
 						}
 						function handlerEnter(info){
-							console.log('check answer', answer, info);
 							return answer.indexOf(info.trim().toLowerCase());
 						}
 					};

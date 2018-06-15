@@ -1,11 +1,11 @@
 import global from '../config.js';
 import monsterPuzzle from '../fractionSetting/monstersPuzzle.js';
 import monsterView from './monsterView.js';
-let monsterHead = monsterPuzzle.monsterHead[_.random(0, monsterPuzzle.monsterHead.length -1)];
-let monsterBody = monsterPuzzle.monsterBody[_.random(0, monsterPuzzle.monsterBody.length -1)];
-let monsterFoot = monsterPuzzle.monsterFoot[_.random(0, monsterPuzzle.monsterFoot.length -1)];
-monsterView(monsterHead.img, monsterBody.img, monsterFoot.img);
 export default function() {
+	let monsterHead = monsterPuzzle.monsterHead[_.random(0, monsterPuzzle.monsterHead.length -1)];
+	let monsterBody = monsterPuzzle.monsterBody[_.random(0, monsterPuzzle.monsterBody.length -1)];
+	let monsterFoot = monsterPuzzle.monsterFoot[_.random(0, monsterPuzzle.monsterFoot.length -1)];
+	monsterView(monsterHead.img, monsterBody.img, monsterFoot.img);
 	global.monster.fraction = monsterBody.fraction;
 	global.monster.health = monsterHead.health + monsterBody.health + monsterFoot.health;
 	global.monster.healthMax = monsterHead.health + monsterBody.health + monsterFoot.health;
