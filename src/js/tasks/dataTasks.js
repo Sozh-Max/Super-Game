@@ -81,4 +81,10 @@ export default {
 			translate: ['граната', 'зародыш', 'яйца', 'икра', 'яйцо', 'икринка', 'яйцеклетка'],
 		}
 	],
+	mathematicalOperations: [
+		{number: 2},
+		{number: 3},
+		{number: 4},
+		{number: 5},
+	],
 }

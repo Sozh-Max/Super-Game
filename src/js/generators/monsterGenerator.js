@@ -6,7 +6,6 @@ export default function() {
 	let monsterBody = monsterPuzzle.monsterBody[_.random(0, monsterPuzzle.monsterBody.length -1)];
 	let monsterFoot = monsterPuzzle.monsterFoot[_.random(0, monsterPuzzle.monsterFoot.length -1)];
 	monsterView(monsterHead.img, monsterBody.img, monsterFoot.img);
-	
 	global.monster.fraction = monsterBody.fraction;
 	global.monster.health = monsterHead.health + monsterBody.health + monsterFoot.health;
 	global.monster.healthMax = monsterHead.health + monsterBody.health + monsterFoot.health;
@@ -16,7 +15,7 @@ export default function() {
 		shadow: Number((monsterHead.defense.shadow + monsterBody.defense.shadow + monsterFoot.defense.shadow).toFixed(3)),
 	};
 	global.monster.restore = Number((monsterHead.restore + monsterBody.restore + monsterFoot.restore).toFixed(3));
-	global.monster.damage = monsterHead.damage + monsterBody.damage + monsterFoot.damage + 500;
+	global.monster.damage = monsterHead.damage + monsterBody.damage + monsterFoot.damage;
 	global.monster.state = true;
 	global.fightElement.monsterRange.style.width = 100 + '%';
 }
