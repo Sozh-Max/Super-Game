@@ -1,6 +1,6 @@
 import loadAudio from './audio/loadAudio.js';
 
-let backgroundMusic = loadAudio('../../src/audio/background.mp3', '0.2');
+let backgroundMusic = loadAudio('../../src/audio/background.mp3', '1');
 let monsterAttackAudio = loadAudio('../../src/audio/monsterAttack.mp3', '1');
 let heroAttackAudio = {
 	life: loadAudio('../../src/audio/life.mp3', '1'),
@@ -10,6 +10,8 @@ let heroAttackAudio = {
 
 backgroundMusic.dom.autoplay = true;
 backgroundMusic.dom.loop = true;
+
+
 
 let globalDate = {
 	welcomePage: document.getElementById('welcome_section'),
@@ -72,6 +74,25 @@ let templates = {
 		return str;
 
 	}
+}
+
+document.getElementById('settings_btn').addEventListener('click', () => {
+	document.getElementById('settings').classList.toggle('active');
+});
+
+
+// music and audio effects volume
+
+let rangeMusic = document.getElementById('range_music');
+let rangeEffects = document.getElementById('range_effects');
+rangeMusic.oninput = function() {
+	backgroundMusic.dom.volume = this.value;
+}
+rangeEffects.oninput = function() {
+	heroAttackAudio.life.dom.volume = this.value;
+	heroAttackAudio.chaos.dom.volume = this.value;
+	heroAttackAudio.shadow.dom.volume = this.value;
+	monsterAttackAudio.dom.volume = this.value;
 }
 
 export default {globalDate, fightElement, hero, monster, templates, backgroundMusic, monsterAttackAudio, heroAttackAudio};
