@@ -1,3 +1,16 @@
+import loadAudio from './audio/loadAudio.js';
+
+let backgroundMusic = loadAudio('../../src/audio/background.mp3', '0.2');
+let monsterAttackAudio = loadAudio('../../src/audio/monsterAttack.mp3', '1');
+let heroAttackAudio = {
+	life: loadAudio('../../src/audio/life.mp3', '1'),
+	shadow: loadAudio('../../src/audio/shadow.mp3', '1'),
+	chaos: loadAudio('../../src/audio/chaos.mp3', '1'),
+}
+
+backgroundMusic.dom.autoplay = true;
+backgroundMusic.dom.loop = true;
+
 let globalDate = {
 	welcomePage: document.getElementById('welcome_section'),
 	registrePage: document.getElementById('registre_section'),
@@ -61,4 +74,4 @@ let templates = {
 	}
 }
 
-export default {globalDate, fightElement, hero, monster, templates};
+export default {globalDate, fightElement, hero, monster, templates, backgroundMusic, monsterAttackAudio, heroAttackAudio};

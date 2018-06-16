@@ -12,6 +12,7 @@ export default function() {
 		countingDamage();
 	}
 	function countingDamage() {
+		global.monsterAttackAudio.play();
 		global.hero.health -= damage;
 		global.globalDate.hero.classList.add('monster_attack');
 		global.fightElement.heroHealth.innerHTML = global.hero.health;

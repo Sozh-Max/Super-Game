@@ -15,5 +15,3 @@ if(!localStorage.getItem('superGame')){
 	localStorage.setItem('superGame', objJSON);
 }
 
-games();
-

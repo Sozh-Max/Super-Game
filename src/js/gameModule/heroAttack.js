@@ -2,6 +2,7 @@ import global from '../config.js';
 import heroAttackView from './heroAttackView.js';
 export default function(elem){
 	let fraction = elem.getAttribute('data-fraction');
+	global.heroAttackAudio[fraction].play();
 	let factorDamage = global.hero.damageFactor[fraction];
 	let damage = global.hero.damage;
 	let factorDefence = global.monster.defense[fraction];

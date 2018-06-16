@@ -9,6 +9,9 @@ import monsterAttack from './monsterAttack.js';
 import resultSave from './resultSave.js';
 
 
+
+
+
 export default function() {
 	let btnsKick = global.fightElement.btnsFight;
 	let damage;
