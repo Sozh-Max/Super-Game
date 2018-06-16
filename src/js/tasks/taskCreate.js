@@ -1,8 +1,10 @@
+import $ from 'jquery';
 import global from '../config.js';
 import modalTask from '../gameModule/modalTask.js';
 import dataTasks from './dataTasks.js';
 
-function templateTranslateEnglish(word){
+
+function templateTranslateEnglish(word) {
 	return `<div class="translateEnglish_task">
 		<div class="word_text">
 			Переведите с английского на русский слово:
@@ -11,20 +13,32 @@ function templateTranslateEnglish(word){
 		<div class="word_input">
 			<input type="text" class="word_answer">
 		</div>
-	</div>`
+	</div>`;
 };
 
-function templateMathematicalOperations(count){
+function templateMathematicalOperations(count) {
 	return `<div class="mathematicalOperations">
-	<div class="math_text">
-		Запишите результат целым числом, округленным до ближайшего целого.
-	</div>
-	<div class="math_block">${count}</div>
-	<div class="math_input">
-		<input type="text" class="math_answer">
-	</div>
-</div>`
+		<div class="math_text">
+			Запишите результат целым числом, округленным до ближайшего целого.
+		</div>
+		<div class="math_block">${count}</div>
+		<div class="math_input">
+			<input type="text" class="math_answer">
+		</div>
+	</div>`;
 };
+
+function templateSortable(word) {
+	let str = `<div class="sortable_task">
+		<ul>`;
+		word.forEach(function(item, i, arr){
+			let letter = word[i];
+			str += `<li data-letter="${letter}">${letter}</li>`
+		});
+str +=	`</ul>
+			</div>`;
+	return str;
+}
 
 
 export default {
@@ -157,10 +171,65 @@ export default {
 
 				global.fightElement.taskAply.addEventListener('click', window.clickHandlerMathem);
 			});
-
-	}
-	return taskDecision();
-
-		
+		}
+		return taskDecision();	
 	},
+
+	sortable: function(data) {
+		let word = data.word;
+		let arrView = data.arr;
+		global.fightElement.tqName.innerHTML = 'Соберите слово на английском языке:';
+		console.log(word, arrView);
+		function taskDecision() {
+			let result;
+			return new Promise((resolve, reject) => {
+				
+				global.fightElement.taskContainer.innerHTML = templateSortable(arrView);
+				$('.sortable_task ul').sortable();
+
+				if ( window.clickHandlerSortable ) {
+					global.fightElement.taskAply.removeEventListener('click', window.clickHandlerSortable);
+				}
+				window.clickHandlerSortable = function() {
+					if(!this.hasAttribute('data-stop')) {
+						this.setAttribute('data-stop', 'stop');
+						setTimeout(() => { this.removeAttribute('data-stop') }, 5000);
+						let list = document.querySelectorAll('.sortable_task li');
+						let length = list.length;
+						let value = '';
+						for (let i = 0; i < length; i++) {
+							value += list[i].getAttribute('data-letter');
+						}
+						result = (word === value) ? true : false;
+						if(result){
+							global.fightElement.reportQuest.setAttribute('class', 'report_quest true');
+							setTimeout(() => {
+								global.fightElement.reportQuest.setAttribute('class', 'report_quest');
+							}, 5000);
+							setTimeout(() => {
+								modalTask('hide');
+								global.fightElement.taskContainer.innerHTML = '';
+								global.fightElement.tqName.innerHTML = '';
+							}, 1000);
+							resolve(result);
+						} else {
+							global.fightElement.reportQuest.setAttribute('class', 'report_quest false');
+							setTimeout(() => {
+								global.fightElement.reportQuest.setAttribute('class', 'report_quest');
+							}, 5000);
+							setTimeout(()=>{
+								modalTask('hide');
+								global.fightElement.taskContainer.innerHTML = '';
+								global.fightElement.tqName.innerHTML = '';
+							},1000);
+							resolve(result);
+						}
+					}
+				};
+
+				global.fightElement.taskAply.addEventListener('click', window.clickHandlerSortable);
+			});
+		}
+		return taskDecision();
+	}
 }

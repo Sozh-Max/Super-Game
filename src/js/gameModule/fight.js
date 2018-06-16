@@ -18,7 +18,7 @@ export default function() {
 			if(!this.hasAttribute('data-stop')){
 				modalAttack('hide');
 				setTimeout(()=>{modalTask('show')},1000);
-				taskloader().then(result => {
+				taskloader('sortable').then(result => {
 					return result;
 				}).then(result => {
 					if(result){

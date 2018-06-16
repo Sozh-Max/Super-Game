@@ -87,4 +87,18 @@ export default {
 		{number: 4},
 		{number: 5},
 	],
+	sortable: [
+		{
+			arr: ['o','e','l','w','y','l'],
+			word: 'yellow',
+		},
+		{
+			arr: ['n','e','g','a','g','u','l','a'],
+			word: 'language',
+		},
+		{
+			arr: ['r','e','n','t','c','i','i','s','p','d','o'],
+			word: 'description',
+		}
+	]
 }

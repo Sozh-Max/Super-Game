@@ -1195,3 +1195,25 @@ body{
 		}
 	}
 }
+
+.sortable_task{
+	ul{
+		margin-left: auto;
+		margin-right: auto;
+		width: 80px;
+		user-select: none;
+		li{
+			font-size: 20px;
+			padding: 2px;
+			border: 1px solid #3b0068;
+			margin-top: 3px;
+			margin-bottom: 3px;
+			cursor: pointer;
+			background: rgba(255,255,255,0.4);
+			&.ui-sortable-helper{
+				box-shadow: 0 0 5px rgba(0,0,0,0.4);
+				background: #fff;
+			}
+		}
+	}
+}

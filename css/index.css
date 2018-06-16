@@ -1240,4 +1240,30 @@ body {
   border-radius: 5px;
   font-size: 18px;
 }
+
+.sortable_task ul {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.sortable_task ul li {
+  font-size: 20px;
+  padding: 2px;
+  border: 1px solid #3b0068;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.sortable_task ul li.ui-sortable-helper {
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  background: #fff;
+}
 /*# sourceMappingURL=index.css.map */
