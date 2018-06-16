@@ -99,6 +99,34 @@ export default {
 		{
 			arr: ['r','e','n','t','c','i','i','s','p','d','o'],
 			word: 'description',
+		},
+		{
+			arr: ['t','a','o','e','s','b','l','r'],
+			word: 'sortable',
+		},
+		{
+			arr: ['l','u','p','o','e','i','s','r'],
+			word: 'perilous',
+		},
+		{
+			arr: ['i','r','g','n','e','g'],
+			word: 'ginger',
+		},
+		{
+			arr: ['e','m','n','k','y','o'],
+			word: 'monkey',
+		},
+		{
+			arr: ['g','n','e','n','v','e','i'],
+			word: 'evening',
+		},
+		{
+			arr: ['e','c','s','u','s','c','s'],
+			word: 'success',
+		},
+		{
+			arr: ['c','m','s','i','a','i','l','u','o'],
+			word: 'malicious',
 		}
 	]
 }

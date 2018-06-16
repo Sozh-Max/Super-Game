@@ -4,6 +4,32 @@ import modalTask from '../gameModule/modalTask.js';
 import dataTasks from './dataTasks.js';
 
 
+function returnResult(result, resolve) {
+	if(result){
+		global.fightElement.reportQuest.setAttribute('class', 'report_quest true');
+		setTimeout(() => {
+			global.fightElement.reportQuest.setAttribute('class', 'report_quest');
+		}, 5000);
+		setTimeout(() => {
+			modalTask('hide');
+			global.fightElement.taskContainer.innerHTML = '';
+			global.fightElement.tqName.innerHTML = '';
+		}, 1000);
+		resolve(result);
+	} else {
+		global.fightElement.reportQuest.setAttribute('class', 'report_quest false');
+		setTimeout(() => {
+			global.fightElement.reportQuest.setAttribute('class', 'report_quest');
+		}, 5000);
+		setTimeout(()=>{
+			modalTask('hide');
+			global.fightElement.taskContainer.innerHTML = '';
+			global.fightElement.tqName.innerHTML = '';
+		},1000);
+		resolve(result);
+	}
+}
+
 function templateTranslateEnglish(word) {
 	return `<div class="translateEnglish_task">
 		<div class="word_text">
@@ -40,6 +66,12 @@ str +=	`</ul>
 	return str;
 }
 
+function removeEvents() {
+	global.fightElement.taskAply.removeEventListener('click', window.clickHandlerTranslate);
+	global.fightElement.taskAply.removeEventListener('click', window.clickHandlerSortable);
+	global.fightElement.taskAply.removeEventListener('click', window.clickHandlerMathem);
+}
+
 
 export default {
 	translateEnglish: function(data, name, number){
@@ -49,57 +81,33 @@ export default {
 		global.fightElement.tqName.innerHTML = 'Перевести с английского.';
 		global.fightElement.taskContainer.innerHTML = templateTranslateEnglish(word);
 		function taskDecision() {
-				let value;
-				let result;
-				let inputEnter;
-				return new Promise((resolve, reject) => {
-					if ( window.clickHandlerTranslate ) {
-						global.fightElement.taskAply.removeEventListener('click', window.clickHandlerTranslate);
+			let value;
+			let result;
+			let inputEnter;
+			return new Promise((resolve, reject) => {
+				removeEvents();
+				window.clickHandlerTranslate = function() {
+					if(!this.hasAttribute('data-stop')) {
+						let value = document.querySelector('.translateEnglish_task .word_answer').value;
+						let result;
+						let inputEnter;
+						if(value.length < 1){
+							global.fightElement.reportQuest.setAttribute('class', 'report_quest empty');
+							return false;
+						}
+						this.setAttribute('data-stop', 'stop');
+						setTimeout(() => { this.removeAttribute('data-stop') }, 5000);
+						inputEnter = handlerEnter(value);
+
+						result = (inputEnter >= 0) ? true : false;
+						returnResult(result, resolve);
 					}
-					window.clickHandlerTranslate = function() {
-						if(!this.hasAttribute('data-stop')) {
-							let value = document.querySelector('.translateEnglish_task .word_answer').value;
-							let result;
-							let inputEnter;
-							if(value.length < 1){
-								global.fightElement.reportQuest.setAttribute('class', 'report_quest empty');
-								return false;
-							}
-							this.setAttribute('data-stop', 'stop');
-							setTimeout(() => { this.removeAttribute('data-stop') }, 5000);
-							inputEnter = handlerEnter(value);
+					function handlerEnter(info){
+						return answer.indexOf(info.trim().toLowerCase());
+					}
+				};
 
-							result = (inputEnter >= 0) ? true : false;
-							if(result){
-								global.fightElement.reportQuest.setAttribute('class', 'report_quest true');
-								setTimeout(() => {
-									global.fightElement.reportQuest.setAttribute('class', 'report_quest');
-								}, 5000);
-								setTimeout(() => {
-									modalTask('hide');
-									global.fightElement.taskContainer.innerHTML = '';
-									global.fightElement.tqName.innerHTML = '';
-								}, 1000);
-								resolve(result);
-							} else {
-								global.fightElement.reportQuest.setAttribute('class', 'report_quest false');
-								setTimeout(() => {
-									global.fightElement.reportQuest.setAttribute('class', 'report_quest');
-								}, 5000);
-								setTimeout(()=>{
-									modalTask('hide');
-									global.fightElement.taskContainer.innerHTML = '';
-									global.fightElement.tqName.innerHTML = '';
-								},1000);
-								resolve(result);
-							}
-						}
-						function handlerEnter(info){
-							return answer.indexOf(info.trim().toLowerCase());
-						}
-					};
-
-					global.fightElement.taskAply.addEventListener('click', window.clickHandlerTranslate);
+				global.fightElement.taskAply.addEventListener('click', window.clickHandlerTranslate);
 			});
 
 		}
@@ -127,9 +135,7 @@ export default {
 				count = Math.round(eval(str));
 				global.fightElement.taskContainer.innerHTML = templateMathematicalOperations(str);
 
-				if ( window.clickHandlerMathem ) {
-					global.fightElement.taskAply.removeEventListener('click', window.clickHandlerMathem);
-				}
+				removeEvents();
 				window.clickHandlerMathem = function() {
 					if(!this.hasAttribute('data-stop')) {
 						let value = Number(document.querySelector('.mathematicalOperations .math_answer').value);
@@ -141,31 +147,7 @@ export default {
 						setTimeout(() => { this.removeAttribute('data-stop') }, 5000);
 
 						result = (count === value) ? true : false;
-						if(result){
-							global.fightElement.reportQuest.setAttribute('class', 'report_quest true');
-							setTimeout(() => {
-								global.fightElement.reportQuest.setAttribute('class', 'report_quest');
-							}, 5000);
-							setTimeout(() => {
-								modalTask('hide');
-								global.fightElement.taskContainer.innerHTML = '';
-								global.fightElement.tqName.innerHTML = '';
-							}, 1000);
-							resolve(result);
-						} else {
-							global.fightElement.reportQuest.setAttribute('class', 'report_quest false');
-							setTimeout(() => {
-								global.fightElement.reportQuest.setAttribute('class', 'report_quest');
-							}, 5000);
-							setTimeout(()=>{
-								modalTask('hide');
-								global.fightElement.taskContainer.innerHTML = '';
-								global.fightElement.tqName.innerHTML = '';
-							},1000);
-							resolve(result);
-						}
-
-
+						returnResult(result, resolve);
 					}
 				};
 
@@ -179,7 +161,7 @@ export default {
 		let word = data.word;
 		let arrView = data.arr;
 		global.fightElement.tqName.innerHTML = 'Соберите слово на английском языке:';
-		console.log(word, arrView);
+		
 		function taskDecision() {
 			let result;
 			return new Promise((resolve, reject) => {
@@ -187,9 +169,7 @@ export default {
 				global.fightElement.taskContainer.innerHTML = templateSortable(arrView);
 				$('.sortable_task ul').sortable();
 
-				if ( window.clickHandlerSortable ) {
-					global.fightElement.taskAply.removeEventListener('click', window.clickHandlerSortable);
-				}
+				removeEvents();
 				window.clickHandlerSortable = function() {
 					if(!this.hasAttribute('data-stop')) {
 						this.setAttribute('data-stop', 'stop');
@@ -201,29 +181,7 @@ export default {
 							value += list[i].getAttribute('data-letter');
 						}
 						result = (word === value) ? true : false;
-						if(result){
-							global.fightElement.reportQuest.setAttribute('class', 'report_quest true');
-							setTimeout(() => {
-								global.fightElement.reportQuest.setAttribute('class', 'report_quest');
-							}, 5000);
-							setTimeout(() => {
-								modalTask('hide');
-								global.fightElement.taskContainer.innerHTML = '';
-								global.fightElement.tqName.innerHTML = '';
-							}, 1000);
-							resolve(result);
-						} else {
-							global.fightElement.reportQuest.setAttribute('class', 'report_quest false');
-							setTimeout(() => {
-								global.fightElement.reportQuest.setAttribute('class', 'report_quest');
-							}, 5000);
-							setTimeout(()=>{
-								modalTask('hide');
-								global.fightElement.taskContainer.innerHTML = '';
-								global.fightElement.tqName.innerHTML = '';
-							},1000);
-							resolve(result);
-						}
+						returnResult(result, resolve);
 					}
 				};
 
