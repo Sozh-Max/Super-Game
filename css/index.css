@@ -1333,4 +1333,39 @@ body {
           box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
   background: #fff;
 }
+
+.javascript .js_text {
+  font-size: 16px;
+  color: #5a5a5a;
+  margin-bottom: 20px;
+}
+
+.javascript .js_img {
+  margin-bottom: 20px;
+}
+
+.javascript .js_img img {
+  max-width: 100%;
+}
+
+.javascript .js_variants {
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  font-size: 18px;
+}
+
+.javascript .js_variants .radio_block {
+  margin-bottom: 10px;
+}
+
+.javascript .js_variants .radio_block label {
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.javascript .js_variants .radio_block label span {
+  margin-left: 8px;
+}
 /*# sourceMappingURL=index.css.map */

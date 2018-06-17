@@ -128,5 +128,62 @@ export default {
 			arr: ['c','m','s','i','a','i','l','u','o'],
 			word: 'malicious',
 		}
+	],
+	javaScript: [
+		{
+			res: 'true',
+			img: 'src/img/js_task/js1.jpg',
+			variants: ['true', 'false', 'undefined', 'null']
+		},
+		{
+			res: '1208',
+			img: 'src/img/js_task/js2.jpg',
+			variants: ['12157', '119', '1208', 'false', 'undefined']
+		},
+		{
+			res: 'false',
+			img: 'src/img/js_task/js3.jpg',
+			variants: ['true', 'false', 'undefined', 'null']
+		},
+		{
+			res: 'false',
+			img: 'src/img/js_task/js4.jpg',
+			variants: ['true', 'false', 'NaN', 'null']
+		},
+		{
+			res: 'undefined',
+			img: 'src/img/js_task/js5.jpg',
+			variants: ['5', 'false', 'undefined', 'null']
+		},
+		{
+			res: 'false',
+			img: 'src/img/js_task/js6.jpg',
+			variants: ['true', 'false', 'undefined', 'null']
+		},
+		{
+			res: 'test',
+			img: 'src/img/js_task/js7.jpg',
+			variants: ['0', 'test', 'undefined', 'null']
+		},
+		{
+			res: '1',
+			img: 'src/img/js_task/js8.jpg',
+			variants: ['10', '1', 'undefined', 'null', 'false']
+		},
+		{
+			res: 'object',
+			img: 'src/img/js_task/js9.jpg',
+			variants: ['true', 'false', 'object', 'undefined', 'null']
+		},
+		{
+			res: 'false',
+			img: 'src/img/js_task/js10.jpg',
+			variants: ['true', 'false', 'undefined', 'null']
+		},
+		{
+			res: 'true',
+			img: 'src/img/js_task/js11.jpg',
+			variants: ['true', 'false', 'undefined', 'null']
+		}
 	]
 }

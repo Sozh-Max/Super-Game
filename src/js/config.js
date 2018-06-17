@@ -1,6 +1,6 @@
 import loadAudio from './audio/loadAudio.js';
 
-let backgroundMusic = loadAudio('../../src/audio/background.mp3', '1');
+let backgroundMusic = loadAudio('../../src/audio/background.mp3', '0');
 let monsterAttackAudio = loadAudio('../../src/audio/monsterAttack.mp3', '1');
 let heroAttackAudio = {
 	life: loadAudio('../../src/audio/life.mp3', '1'),

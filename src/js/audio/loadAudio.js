@@ -1,5 +1,5 @@
 export default function(music, vol) {
-		let audio = document.createElement("AUDIO");
+		let audio = document.createElement('AUDIO');
 		let source = document.createElement('source');
 		source.src = music;
 		audio.appendChild(source);

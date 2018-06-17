@@ -66,10 +66,39 @@ str +=	`</ul>
 	return str;
 }
 
+function templateJavaScript(image, array) {
+	let str = `<div class="javascript">
+	<div class="js_text">
+		Что покажет console.log() в данном случае:
+	</div>
+	<div class="js_img">
+		<img src="${image}" alt="">
+	</div>
+	<div class="js_variants">`
+	array.forEach(function(item, i, arr){
+		let letter = array[i];
+		
+	str += `<div class="radio_block">
+			<label>
+				<input type="radio" name="js" value="${letter}"` 
+				if(i===0){
+					str += ` checked `
+				}; 
+				str += `>
+				<span>${letter}</span>
+			</label>
+		</div>`
+		});
+	str += `</div>
+	</div>`
+	return str;
+}
+
 function removeEvents() {
 	global.fightElement.taskAply.removeEventListener('click', window.clickHandlerTranslate);
 	global.fightElement.taskAply.removeEventListener('click', window.clickHandlerSortable);
 	global.fightElement.taskAply.removeEventListener('click', window.clickHandlerMathem);
+	global.fightElement.taskAply.removeEventListener('click', window.clickHandlerJavaScript);
 }
 
 
@@ -186,6 +215,37 @@ export default {
 				};
 
 				global.fightElement.taskAply.addEventListener('click', window.clickHandlerSortable);
+			});
+		}
+		return taskDecision();
+	},
+
+	javaScript: function(data) {
+		let rightResult = data.res;
+		let image = data.img;
+		let variants = data.variants;
+		global.fightElement.tqName.innerHTML = 'JavaScript';
+		
+		function taskDecision() {
+			let result;
+			return new Promise((resolve, reject) => {
+				
+				global.fightElement.taskContainer.innerHTML = templateJavaScript(image, variants);
+
+				removeEvents();
+				window.clickHandlerJavaScript = function() {
+					if(!this.hasAttribute('data-stop')) {
+						this.setAttribute('data-stop', 'stop');
+						setTimeout(() => { this.removeAttribute('data-stop') }, 5000);
+
+						let value = document.querySelector('input[name="js"]:checked').value;
+						
+						result = (rightResult === value) ? true : false;
+						returnResult(result, resolve);
+					}
+				};
+
+				global.fightElement.taskAply.addEventListener('click', window.clickHandlerJavaScript);
 			});
 		}
 		return taskDecision();
