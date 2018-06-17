@@ -420,8 +420,8 @@ export default {
 
 	comparison: function() {
 		global.fightElement.tqName.innerHTML = 'Выполните задание';
-		let numbLeft = _.random(3);
-		let numbRight = _.random(3);
+		let numbLeft = _.random(20);
+		let numbRight = _.random(20);
 		global.fightElement.taskContainer.innerHTML = templateComparison(numbLeft, numbRight);
 		function taskDecision() {
 			let result;
@@ -449,7 +449,6 @@ export default {
 						}
 					}
 					function handlerEnter(numbLeft, value, numbRight){
-						console.log(eval(`${numbLeft} ${value} ${numbRight}`));
 						return eval(`${numbLeft} ${value} ${numbRight}`);
 					}
 				};
@@ -462,7 +461,6 @@ export default {
 	},
 
 	speech: function(data) {
-		console.log(data.text);
 		global.fightElement.tqName.innerHTML = 'Запишите, что Вы слышите:';
 		let text = new SpeechSynthesisUtterance(data.text);
 		function taskDecision() {
