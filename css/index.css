@@ -1391,4 +1391,93 @@ body {
   border-radius: 5px;
   font-size: 18px;
 }
+
+.puzzles .puzzles_text {
+  font-size: 16px;
+  color: #5a5a5a;
+  margin-bottom: 30px;
+}
+
+.puzzles .puzzles_input {
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.puzzles .puzzles_input .puzzles_answer {
+  width: 100%;
+  height: 34px;
+  border: 1px solid #5a5a5a;
+  color: #5a5a5a;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 5px;
+  font-size: 18px;
+}
+
+.empty .empty_text {
+  font-size: 16px;
+  color: #5a5a5a;
+  margin-bottom: 10px;
+}
+
+.empty .empty_block {
+  font-size: 22px;
+  margin-bottom: 30px;
+}
+
+.empty .empty_input {
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.empty .empty_input .empty_answer {
+  width: 100%;
+  height: 34px;
+  border: 1px solid #5a5a5a;
+  color: #5a5a5a;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 5px;
+  font-size: 18px;
+}
+
+.comparison .comparison_text {
+  font-size: 16px;
+  color: #5a5a5a;
+  margin-bottom: 20px;
+}
+
+.comparison .comparison_block {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  display: -webkit-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -moz-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -moz-align-items: center;
+  align-items: center;
+}
+
+.comparison .comparison_block .input_symbol {
+  width: 40px;
+  height: 34px;
+  border: 1px solid #5a5a5a;
+  color: #5a5a5a;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 5px;
+  font-size: 24px;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: center;
+}
 /*# sourceMappingURL=index.css.map */

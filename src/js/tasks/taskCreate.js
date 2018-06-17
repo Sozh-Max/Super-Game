@@ -106,12 +106,53 @@ function templateGeometry(text) {
 					</div>`;
 }
 
+function templatePuzzles(words) {
+	return `<div class="puzzles">
+		<div class="puzzles_text">
+			${words}
+		</div>
+		<div class="puzzles_input">
+			<input type="text" class="puzzles_answer">
+		</div>
+	</div>`;
+};
+
+function templateEmptyString(word) {
+	return `<div class="empty">
+		<div class="empty_text">
+			Запишите недостающие буквы в поле для ввода, их колличество зависит от точек.
+		</div>
+		<div class="empty_block">
+			${word}
+		</div>
+		<div class="empty_input">
+			<input type="text" class="empty_answer">
+		</div>
+	</div>`;
+};
+
+function templateComparison(numbLeft, numbRight) {
+	return `<div class="comparison">
+	<div class="comparison_text">
+		Впишите символ(>,<,=), чтобы выражение стало верным:
+	</div>
+	<div class="comparison_block">
+		<div class="numb">${numbLeft}</div>
+		<div class="symbol"><input type="text" class="input_symbol" maxlength="1"></div>
+		<div class="numb">${numbRight}</div>
+	</div>
+</div>`
+}
+
 function removeEvents() {
 	global.fightElement.taskAply.removeEventListener('click', window.clickHandlerTranslate);
 	global.fightElement.taskAply.removeEventListener('click', window.clickHandlerSortable);
 	global.fightElement.taskAply.removeEventListener('click', window.clickHandlerMathem);
 	global.fightElement.taskAply.removeEventListener('click', window.clickHandlerJavaScript);
 	global.fightElement.taskAply.removeEventListener('click', window.clickHandlerGeometry);
+	global.fightElement.taskAply.removeEventListener('click', window.clickHandlerPuzzles);
+	global.fightElement.taskAply.removeEventListener('click', window.clickHandlerEmpty);
+	global.fightElement.taskAply.removeEventListener('click', window.clickHandlerComparison);
 }
 
 
@@ -266,9 +307,6 @@ export default {
 
 	geometry: function(data) {
 		global.fightElement.tqName.innerHTML = data.name;
-		console.log(data);
-
-
 		function taskDecision() {
 			return new Promise((resolve, reject) => {
 				let result;
@@ -276,7 +314,6 @@ export default {
 				let text = data.condition(number);
 				let count = Math.round(data.formula(number));
 				global.fightElement.taskContainer.innerHTML = templateGeometry(text);
-				console.log(count);
 				removeEvents();
 				window.clickHandlerGeometry = function() {
 					if(!this.hasAttribute('data-stop')) {
@@ -287,7 +324,6 @@ export default {
 						}
 						this.setAttribute('data-stop', 'stop');
 						setTimeout(() => { this.removeAttribute('data-stop') }, 5000);
-						console.log(value);
 						result = (count === value) ? true : false;
 						returnResult(result, resolve);
 					}
@@ -297,5 +333,120 @@ export default {
 			});
 		}
 		return taskDecision();	
-	}
+	},
+
+	puzzles: function(data) {
+		global.fightElement.tqName.innerHTML = 'Отгадайте загадку.';
+		global.fightElement.taskContainer.innerHTML = templatePuzzles(data.question);
+		function taskDecision() {
+			let value;
+			let result;
+			let inputEnter;
+			return new Promise((resolve, reject) => {
+				removeEvents();
+				window.clickHandlerPuzzles = function() {
+					if(!this.hasAttribute('data-stop')) {
+						let value = document.querySelector('.puzzles .puzzles_answer').value;
+						let result;
+						let inputEnter;
+						if(value.length < 1){
+							global.fightElement.reportQuest.setAttribute('class', 'report_quest empty');
+							return false;
+						}
+						this.setAttribute('data-stop', 'stop');
+						setTimeout(() => { this.removeAttribute('data-stop') }, 5000);
+						inputEnter = handlerEnter(value);
+
+						result = (inputEnter >= 0) ? true : false;
+						returnResult(result, resolve);
+					}
+					function handlerEnter(info){
+						return data.answer.indexOf(info.trim().toLowerCase());
+					}
+				};
+
+				global.fightElement.taskAply.addEventListener('click', window.clickHandlerPuzzles);
+			});
+
+		}
+		return taskDecision();
+	},
+
+	emptyString: function(data) {
+		global.fightElement.tqName.innerHTML = 'Вставьте недостающую букву, или буквы.';
+		global.fightElement.taskContainer.innerHTML = templateEmptyString(data.word);
+		function taskDecision() {
+			let value;
+			let result;
+			let inputEnter;
+			return new Promise((resolve, reject) => {
+				removeEvents();
+				window.clickHandlerEmpty = function() {
+					if(!this.hasAttribute('data-stop')) {
+						let value = document.querySelector('.empty .empty_answer').value;
+						let result;
+						let inputEnter;
+						if(value.length < 1){
+							global.fightElement.reportQuest.setAttribute('class', 'report_quest empty');
+							return false;
+						}
+						this.setAttribute('data-stop', 'stop');
+						setTimeout(() => { this.removeAttribute('data-stop') }, 5000);
+						inputEnter = data.handler(value);
+						result = (inputEnter === data.wordRes) ? true : false;
+						returnResult(result, resolve);
+					}
+				};
+
+				global.fightElement.taskAply.addEventListener('click', window.clickHandlerEmpty);
+			});
+
+		}
+		return taskDecision();
+	},
+
+	comparison: function() {
+		global.fightElement.tqName.innerHTML = 'Выполните задание';
+		let numbLeft = _.random(3);
+		let numbRight = _.random(3);
+		global.fightElement.taskContainer.innerHTML = templateComparison(numbLeft, numbRight);
+		function taskDecision() {
+			let result;
+			return new Promise((resolve, reject) => {
+				removeEvents();
+				window.clickHandlerComparison = function() {
+					if(!this.hasAttribute('data-stop')) {
+						let value = document.querySelector('.comparison .input_symbol').value;
+						if(value.length < 1){
+							global.fightElement.reportQuest.setAttribute('class', 'report_quest empty');
+							return false;
+						}
+						if (value === '=' || value === '>' || value === '<') {
+							if (value === '='){
+								value = '==='
+							}
+							this.setAttribute('data-stop', 'stop');
+							setTimeout(() => { this.removeAttribute('data-stop') }, 5000);
+							result = handlerEnter(numbLeft, value, numbRight);
+
+							returnResult(result, resolve);
+						} else {
+							global.fightElement.reportQuest.setAttribute('class', 'report_quest empty');
+							return false;
+						}
+					}
+					function handlerEnter(numbLeft, value, numbRight){
+						console.log(eval(`${numbLeft} ${value} ${numbRight}`));
+						return eval(`${numbLeft} ${value} ${numbRight}`);
+					}
+				};
+
+				global.fightElement.taskAply.addEventListener('click', window.clickHandlerComparison);
+			});
+
+		}
+		return taskDecision();
+	},
+
+
 }

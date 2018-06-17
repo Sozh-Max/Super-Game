@@ -1327,3 +1327,88 @@ body{
 		}
 	}
 }
+
+.puzzles{
+	.puzzles_text{
+		font-size: 16px;
+		color: rgb(90, 90, 90);
+		margin-bottom: 30px;
+	}
+	.puzzles_input{
+		width: 400px;
+		margin-left: auto;
+		margin-right: auto;
+		.puzzles_answer{
+			width: 100%;
+			height: 34px;
+			border: 1px solid rgb(90, 90, 90);
+			color: rgb(90, 90, 90);
+			padding-left: 15px;
+			padding-right: 15px;
+			border-radius: 5px;
+			font-size: 18px;
+		}
+	}
+}
+
+.empty{
+	.empty_text{
+		font-size: 16px;
+		color: rgb(90, 90, 90);
+		margin-bottom: 10px;
+	}
+	.empty_block{
+		font-size: 22px;
+		margin-bottom: 30px;
+	}
+	.empty_input{
+		width: 400px;
+		margin-left: auto;
+		margin-right: auto;
+		.empty_answer{
+			width: 100%;
+			height: 34px;
+			border: 1px solid rgb(90, 90, 90);
+			color: rgb(90, 90, 90);
+			padding-left: 15px;
+			padding-right: 15px;
+			border-radius: 5px;
+			font-size: 18px;
+		}
+	}
+}
+
+.comparison{
+	.comparison_text{
+		font-size: 16px;
+		color: rgb(90, 90, 90);
+		margin-bottom: 20px;
+	}
+	.comparison_block{
+		font-size: 24px;
+		font-weight: 500;
+		margin-bottom: 20px;
+		@include flexbox;
+		@include justify-content(center);
+		@include align-items(center);
+		.input_symbol{
+			width: 40px;
+			height: 34px;
+			border: 1px solid rgb(90, 90, 90);
+			color: rgb(90, 90, 90);
+			padding-left: 5px;
+			padding-right: 5px;
+			border-radius: 5px;
+			font-size: 24px;
+			margin-left: 10px;
+			margin-right: 10px;
+			text-align: center;
+		}
+	}
+}
+
+
+
+
+
+
