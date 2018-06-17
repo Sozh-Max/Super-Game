@@ -5,7 +5,7 @@ import dataTasks from './dataTasks.js';
 
 
 function returnResult(result, resolve) {
-	if(result){
+	if (result){
 		global.fightElement.reportQuest.setAttribute('class', 'report_quest true');
 		setTimeout(() => {
 			global.fightElement.reportQuest.setAttribute('class', 'report_quest');
@@ -94,11 +94,24 @@ function templateJavaScript(image, array) {
 	return str;
 }
 
+function templateGeometry(text) {
+	return `<div class="geometry">
+						<div class="geometry_text">${text}</div>
+						<div class="geometry_text">
+							Запишите результат целым числом, округленным до ближайшего целого.
+						</div>
+						<div class="geometry_input">
+							<input type="text" class="geometry_answer">
+						</div>
+					</div>`;
+}
+
 function removeEvents() {
 	global.fightElement.taskAply.removeEventListener('click', window.clickHandlerTranslate);
 	global.fightElement.taskAply.removeEventListener('click', window.clickHandlerSortable);
 	global.fightElement.taskAply.removeEventListener('click', window.clickHandlerMathem);
 	global.fightElement.taskAply.removeEventListener('click', window.clickHandlerJavaScript);
+	global.fightElement.taskAply.removeEventListener('click', window.clickHandlerGeometry);
 }
 
 
@@ -249,5 +262,40 @@ export default {
 			});
 		}
 		return taskDecision();
+	},
+
+	geometry: function(data) {
+		global.fightElement.tqName.innerHTML = data.name;
+		console.log(data);
+
+
+		function taskDecision() {
+			return new Promise((resolve, reject) => {
+				let result;
+				let number = _.random(1, 10);
+				let text = data.condition(number);
+				let count = Math.round(data.formula(number));
+				global.fightElement.taskContainer.innerHTML = templateGeometry(text);
+				console.log(count);
+				removeEvents();
+				window.clickHandlerGeometry = function() {
+					if(!this.hasAttribute('data-stop')) {
+						let value = Number(document.querySelector('.geometry .geometry_answer').value);
+						if(value.length < 1){
+							global.fightElement.reportQuest.setAttribute('class', 'report_quest empty');
+							return false;
+						}
+						this.setAttribute('data-stop', 'stop');
+						setTimeout(() => { this.removeAttribute('data-stop') }, 5000);
+						console.log(value);
+						result = (count === value) ? true : false;
+						returnResult(result, resolve);
+					}
+				};
+
+				global.fightElement.taskAply.addEventListener('click', window.clickHandlerGeometry);
+			});
+		}
+		return taskDecision();	
 	}
 }

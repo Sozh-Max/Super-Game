@@ -1304,3 +1304,26 @@ body{
 		}
 	}
 }
+
+.geometry{
+	.geometry_text{
+		font-size: 16px;
+		color: rgb(90, 90, 90);
+		margin-bottom: 20px;
+	}
+	.geometry_input{
+		width: 400px;
+		margin-left: auto;
+		margin-right: auto;
+		.geometry_answer{
+			width: 100%;
+			height: 34px;
+			border: 1px solid rgb(90, 90, 90);
+			color: rgb(90, 90, 90);
+			padding-left: 15px;
+			padding-right: 15px;
+			border-radius: 5px;
+			font-size: 18px;
+		}
+	}
+}

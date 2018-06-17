@@ -1368,4 +1368,27 @@ body {
 .javascript .js_variants .radio_block label span {
   margin-left: 8px;
 }
+
+.geometry .geometry_text {
+  font-size: 16px;
+  color: #5a5a5a;
+  margin-bottom: 20px;
+}
+
+.geometry .geometry_input {
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.geometry .geometry_input .geometry_answer {
+  width: 100%;
+  height: 34px;
+  border: 1px solid #5a5a5a;
+  color: #5a5a5a;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 5px;
+  font-size: 18px;
+}
 /*# sourceMappingURL=index.css.map */

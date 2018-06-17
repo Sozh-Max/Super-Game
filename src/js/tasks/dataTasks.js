@@ -185,5 +185,27 @@ export default {
 			img: 'src/img/js_task/js11.jpg',
 			variants: ['true', 'false', 'undefined', 'null']
 		}
+	],
+	geometry: [
+		{
+			name: 'Площадь куба',
+			formula: numb => {return (6 * numb * numb)},
+			condition: numb => {return `Посчитайте площадь куба, имея длину его грани равный <span class="count">${numb}</span> единиц(ам) измерения.`},
+		},
+		{
+			name: 'Площадь шара',
+			formula: numb => {return (3.14 * numb * numb)},
+			condition: numb => {return `Посчитайте площадь шара, имея диаметр равный <span class="count">${numb}</span> единиц(ам) измерения.`},
+		},
+		{
+			name: 'Объем куба',
+			formula: numb => {return (numb * numb * numb)},
+			condition: numb => {return `Посчитайте объем куба, имея длину его грани равный <span class="count">${numb}</span> единиц(ам) измерения.`},
+		},
+		{
+			name: 'Объем шара',
+			formula: numb => {return (4 / 3 * 3.14 * numb * numb * numb)},
+			condition: numb => {return `Посчитайте объем шара, имея радиус равный <span class="count">${numb}</span> единиц(ам) измерения.`},
+		}
 	]
 }
