@@ -447,5 +447,22 @@ export default {
 	comparison: [
 		{},
 	],
-
+	speech: [
+		{text: 'description'},
+		{text: 'blue'},
+		{text: 'destroy'},
+		{text: 'write'},
+		{text: 'horse'},
+		{text: 'speed'},
+		{text: 'cat'},
+		{text: 'monkey'},
+		{text: 'tiger'},
+		{text: 'girl'},
+		{text: 'drink'},
+		{text: 'yesterday'},
+		{text: 'party'},
+		{text: 'easy'},
+		{text: 'heart'},
+	],
+	
 }

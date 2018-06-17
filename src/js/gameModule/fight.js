@@ -21,7 +21,7 @@ export default function() {
 			if(!this.hasAttribute('data-stop')){
 				modalAttack('hide');
 				setTimeout(()=>{modalTask('show')},1000);
-				taskloader('comparison').then(result => {
+				taskloader().then(result => {
 					return result;
 				}).then(result => {
 					if(result){

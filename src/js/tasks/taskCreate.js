@@ -144,6 +144,18 @@ function templateComparison(numbLeft, numbRight) {
 </div>`
 }
 
+function templateSpeech(){
+	return `<div class="speech">
+	<div class="speech_text">Нажимите на кнопку, чтобы прослушать:</div>
+	<div class="speech_block">
+		<button class="btn_speech">Прослушать</button>
+	</div>
+	<div class="speech_input">
+		<input type="text" class="speech_answer">
+	</div>
+</div>`
+}
+
 function removeEvents() {
 	global.fightElement.taskAply.removeEventListener('click', window.clickHandlerTranslate);
 	global.fightElement.taskAply.removeEventListener('click', window.clickHandlerSortable);
@@ -153,6 +165,7 @@ function removeEvents() {
 	global.fightElement.taskAply.removeEventListener('click', window.clickHandlerPuzzles);
 	global.fightElement.taskAply.removeEventListener('click', window.clickHandlerEmpty);
 	global.fightElement.taskAply.removeEventListener('click', window.clickHandlerComparison);
+	global.fightElement.taskAply.removeEventListener('click', window.clickHandlerSpeech);
 }
 
 
@@ -447,6 +460,43 @@ export default {
 		}
 		return taskDecision();
 	},
+
+	speech: function(data) {
+		console.log(data.text);
+		global.fightElement.tqName.innerHTML = 'Запишите, что Вы слышите:';
+		let text = new SpeechSynthesisUtterance(data.text);
+		function taskDecision() {
+			return new Promise((resolve, reject) => {
+				let result;
+				global.fightElement.taskContainer.innerHTML = templateSpeech();
+				document.querySelector('.speech .btn_speech').addEventListener('click', () => {
+					speechSynthesis.speak(text);
+				});
+				
+				removeEvents();
+				window.clickHandlerSpeech = function() {
+					if(!this.hasAttribute('data-stop')) {
+						let value = document.querySelector('.speech_answer').value;
+						value = value.trim().toLowerCase();
+						if(value.length < 1){
+							global.fightElement.reportQuest.setAttribute('class', 'report_quest empty');
+							return false;
+						}
+						this.setAttribute('data-stop', 'stop');
+						setTimeout(() => { this.removeAttribute('data-stop') }, 5000);
+
+						result = (data.text === value) ? true : false;
+						returnResult(result, resolve);
+					}
+				};
+
+				global.fightElement.taskAply.addEventListener('click', window.clickHandlerSpeech);
+			});
+		}
+		return taskDecision();
+		
+	}
+
 
 
 }
