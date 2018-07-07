@@ -2,158 +2,26 @@ import $ from 'jquery';
 import global from '../config.js';
 import modalTask from '../gameModule/modalTask.js';
 import dataTasks from './dataTasks.js';
+import templateTaskModal from './templateTaskModal.js';
 
 
 function returnResult(result, resolve) {
+	let animationTime = 1000;
+	let beforeAnimationTime = 5000;
 	if (result){
 		global.fightElement.reportQuest.setAttribute('class', 'report_quest true');
-		setTimeout(() => {
-			global.fightElement.reportQuest.setAttribute('class', 'report_quest');
-		}, 5000);
-		setTimeout(() => {
-			modalTask('hide');
-			global.fightElement.taskContainer.innerHTML = '';
-			global.fightElement.tqName.innerHTML = '';
-		}, 1000);
-		resolve(result);
 	} else {
 		global.fightElement.reportQuest.setAttribute('class', 'report_quest false');
-		setTimeout(() => {
-			global.fightElement.reportQuest.setAttribute('class', 'report_quest');
-		}, 5000);
-		setTimeout(()=>{
-			modalTask('hide');
-			global.fightElement.taskContainer.innerHTML = '';
-			global.fightElement.tqName.innerHTML = '';
-		},1000);
-		resolve(result);
 	}
-}
-
-function templateTranslateEnglish(word) {
-	return `<div class="translateEnglish_task">
-		<div class="word_text">
-			Переведите с английского на русский слово:
-		</div>
-		<div class="word_block">${word}</div>
-		<div class="word_input">
-			<input type="text" class="word_answer">
-		</div>
-	</div>`;
-};
-
-function templateMathematicalOperations(count) {
-	return `<div class="mathematicalOperations">
-		<div class="math_text">
-			Запишите результат целым числом, округленным до ближайшего целого.
-		</div>
-		<div class="math_block">${count}</div>
-		<div class="math_input">
-			<input type="text" class="math_answer">
-		</div>
-	</div>`;
-};
-
-function templateSortable(word) {
-	let str = `<div class="sortable_task">
-		<ul>`;
-		word.forEach(function(item, i, arr){
-			let letter = word[i];
-			str += `<li data-letter="${letter}">${letter}</li>`
-		});
-str +=	`</ul>
-			</div>`;
-	return str;
-}
-
-function templateJavaScript(image, array) {
-	let str = `<div class="javascript">
-	<div class="js_text">
-		Что покажет console.log() в данном случае:
-	</div>
-	<div class="js_img">
-		<img src="${image}" alt="">
-	</div>
-	<div class="js_variants">`
-	array.forEach(function(item, i, arr){
-		let letter = array[i];
-		
-	str += `<div class="radio_block">
-			<label>
-				<input type="radio" name="js" value="${letter}"` 
-				if(i===0){
-					str += ` checked `
-				}; 
-				str += `>
-				<span>${letter}</span>
-			</label>
-		</div>`
-		});
-	str += `</div>
-	</div>`
-	return str;
-}
-
-function templateGeometry(text) {
-	return `<div class="geometry">
-						<div class="geometry_text">${text}</div>
-						<div class="geometry_text">
-							Запишите результат целым числом, округленным до ближайшего целого.
-						</div>
-						<div class="geometry_input">
-							<input type="text" class="geometry_answer">
-						</div>
-					</div>`;
-}
-
-function templatePuzzles(words) {
-	return `<div class="puzzles">
-		<div class="puzzles_text">
-			${words}
-		</div>
-		<div class="puzzles_input">
-			<input type="text" class="puzzles_answer">
-		</div>
-	</div>`;
-};
-
-function templateEmptyString(word) {
-	return `<div class="empty">
-		<div class="empty_text">
-			Запишите недостающие буквы в поле для ввода, их колличество зависит от точек.
-		</div>
-		<div class="empty_block">
-			${word}
-		</div>
-		<div class="empty_input">
-			<input type="text" class="empty_answer">
-		</div>
-	</div>`;
-};
-
-function templateComparison(numbLeft, numbRight) {
-	return `<div class="comparison">
-	<div class="comparison_text">
-		Впишите символ(>,<,=), чтобы выражение стало верным:
-	</div>
-	<div class="comparison_block">
-		<div class="numb">${numbLeft}</div>
-		<div class="symbol"><input type="text" class="input_symbol" maxlength="1"></div>
-		<div class="numb">${numbRight}</div>
-	</div>
-</div>`
-}
-
-function templateSpeech(){
-	return `<div class="speech">
-	<div class="speech_text">Нажимите на кнопку, чтобы прослушать:</div>
-	<div class="speech_block">
-		<button class="btn_speech">Прослушать</button>
-	</div>
-	<div class="speech_input">
-		<input type="text" class="speech_answer">
-	</div>
-</div>`
+	setTimeout(() => {
+		global.fightElement.reportQuest.setAttribute('class', 'report_quest');
+	}, beforeAnimationTime);
+	setTimeout(() => {
+		modalTask('hide');
+		global.fightElement.taskContainer.innerHTML = '';
+		global.fightElement.tqName.innerHTML = '';
+	}, animationTime);
+	resolve(result);
 }
 
 function removeEvents() {
@@ -168,14 +36,15 @@ function removeEvents() {
 	global.fightElement.taskAply.removeEventListener('click', window.clickHandlerSpeech);
 }
 
+let buttonDisableTime = 5000;
+
 
 export default {
 	translateEnglish: function(data, name, number){
-		dataTasks[name].splice(number, 1);
 		let word = data.word;
 		let answer = data.translate;
 		global.fightElement.tqName.innerHTML = 'Перевести с английского.';
-		global.fightElement.taskContainer.innerHTML = templateTranslateEnglish(word);
+		global.fightElement.taskContainer.innerHTML = templateTaskModal.templateTranslateEnglish(word);
 		function taskDecision() {
 			let value;
 			let result;
@@ -192,9 +61,8 @@ export default {
 							return false;
 						}
 						this.setAttribute('data-stop', 'stop');
-						setTimeout(() => { this.removeAttribute('data-stop') }, 5000);
+						setTimeout(() => { this.removeAttribute('data-stop') }, buttonDisableTime);
 						inputEnter = handlerEnter(value);
-
 						result = (inputEnter >= 0) ? true : false;
 						returnResult(result, resolve);
 					}
@@ -202,10 +70,8 @@ export default {
 						return answer.indexOf(info.trim().toLowerCase());
 					}
 				};
-
 				global.fightElement.taskAply.addEventListener('click', window.clickHandlerTranslate);
 			});
-
 		}
 		return taskDecision();
 	},
@@ -229,8 +95,7 @@ export default {
 					}
 				}
 				count = Math.round(eval(str));
-				global.fightElement.taskContainer.innerHTML = templateMathematicalOperations(str);
-
+				global.fightElement.taskContainer.innerHTML = templateTaskModal.templateMathematicalOperations(str);
 				removeEvents();
 				window.clickHandlerMathem = function() {
 					if(!this.hasAttribute('data-stop')) {
@@ -240,8 +105,7 @@ export default {
 							return false;
 						}
 						this.setAttribute('data-stop', 'stop');
-						setTimeout(() => { this.removeAttribute('data-stop') }, 5000);
-
+						setTimeout(() => { this.removeAttribute('data-stop') }, buttonDisableTime);
 						result = (count === value) ? true : false;
 						returnResult(result, resolve);
 					}
@@ -256,20 +120,17 @@ export default {
 	sortable: function(data) {
 		let word = data.word;
 		let arrView = data.arr;
-		global.fightElement.tqName.innerHTML = 'Соберите слово на английском языке:';
-		
+		global.fightElement.tqName.innerHTML = 'Соберите слово на английском, или русском языке:';
 		function taskDecision() {
 			let result;
 			return new Promise((resolve, reject) => {
-				
-				global.fightElement.taskContainer.innerHTML = templateSortable(arrView);
+				global.fightElement.taskContainer.innerHTML = templateTaskModal.templateSortable(arrView);
 				$('.sortable_task ul').sortable();
-
 				removeEvents();
 				window.clickHandlerSortable = function() {
 					if(!this.hasAttribute('data-stop')) {
 						this.setAttribute('data-stop', 'stop');
-						setTimeout(() => { this.removeAttribute('data-stop') }, 5000);
+						setTimeout(() => { this.removeAttribute('data-stop') }, buttonDisableTime);
 						let list = document.querySelectorAll('.sortable_task li');
 						let length = list.length;
 						let value = '';
@@ -280,7 +141,6 @@ export default {
 						returnResult(result, resolve);
 					}
 				};
-
 				global.fightElement.taskAply.addEventListener('click', window.clickHandlerSortable);
 			});
 		}
@@ -292,26 +152,20 @@ export default {
 		let image = data.img;
 		let variants = data.variants;
 		global.fightElement.tqName.innerHTML = 'JavaScript';
-		
 		function taskDecision() {
 			let result;
 			return new Promise((resolve, reject) => {
-				
-				global.fightElement.taskContainer.innerHTML = templateJavaScript(image, variants);
-
+				global.fightElement.taskContainer.innerHTML = templateTaskModal.templateJavaScript(image, variants);
 				removeEvents();
 				window.clickHandlerJavaScript = function() {
 					if(!this.hasAttribute('data-stop')) {
 						this.setAttribute('data-stop', 'stop');
-						setTimeout(() => { this.removeAttribute('data-stop') }, 5000);
-
+						setTimeout(() => { this.removeAttribute('data-stop') }, buttonDisableTime);
 						let value = document.querySelector('input[name="js"]:checked').value;
-						
 						result = (rightResult === value) ? true : false;
 						returnResult(result, resolve);
 					}
 				};
-
 				global.fightElement.taskAply.addEventListener('click', window.clickHandlerJavaScript);
 			});
 		}
@@ -326,7 +180,7 @@ export default {
 				let number = _.random(1, 10);
 				let text = data.condition(number);
 				let count = Math.round(data.formula(number));
-				global.fightElement.taskContainer.innerHTML = templateGeometry(text);
+				global.fightElement.taskContainer.innerHTML = templateTaskModal.templateGeometry(text);
 				removeEvents();
 				window.clickHandlerGeometry = function() {
 					if(!this.hasAttribute('data-stop')) {
@@ -336,12 +190,11 @@ export default {
 							return false;
 						}
 						this.setAttribute('data-stop', 'stop');
-						setTimeout(() => { this.removeAttribute('data-stop') }, 5000);
+						setTimeout(() => { this.removeAttribute('data-stop') }, buttonDisableTime);
 						result = (count === value) ? true : false;
 						returnResult(result, resolve);
 					}
 				};
-
 				global.fightElement.taskAply.addEventListener('click', window.clickHandlerGeometry);
 			});
 		}
@@ -350,7 +203,7 @@ export default {
 
 	puzzles: function(data) {
 		global.fightElement.tqName.innerHTML = 'Отгадайте загадку.';
-		global.fightElement.taskContainer.innerHTML = templatePuzzles(data.question);
+		global.fightElement.taskContainer.innerHTML = templateTaskModal.templatePuzzles(data.question);
 		function taskDecision() {
 			let value;
 			let result;
@@ -367,9 +220,8 @@ export default {
 							return false;
 						}
 						this.setAttribute('data-stop', 'stop');
-						setTimeout(() => { this.removeAttribute('data-stop') }, 5000);
+						setTimeout(() => { this.removeAttribute('data-stop') }, buttonDisableTime);
 						inputEnter = handlerEnter(value);
-
 						result = (inputEnter >= 0) ? true : false;
 						returnResult(result, resolve);
 					}
@@ -377,17 +229,15 @@ export default {
 						return data.answer.indexOf(info.trim().toLowerCase());
 					}
 				};
-
 				global.fightElement.taskAply.addEventListener('click', window.clickHandlerPuzzles);
 			});
-
 		}
 		return taskDecision();
 	},
 
 	emptyString: function(data) {
 		global.fightElement.tqName.innerHTML = 'Вставьте недостающую букву, или буквы.';
-		global.fightElement.taskContainer.innerHTML = templateEmptyString(data.word);
+		global.fightElement.taskContainer.innerHTML = templateTaskModal.templateEmptyString(data.word);
 		function taskDecision() {
 			let value;
 			let result;
@@ -404,16 +254,14 @@ export default {
 							return false;
 						}
 						this.setAttribute('data-stop', 'stop');
-						setTimeout(() => { this.removeAttribute('data-stop') }, 5000);
+						setTimeout(() => { this.removeAttribute('data-stop') }, buttonDisableTime);
 						inputEnter = data.handler(value);
 						result = (inputEnter === data.wordRes) ? true : false;
 						returnResult(result, resolve);
 					}
 				};
-
 				global.fightElement.taskAply.addEventListener('click', window.clickHandlerEmpty);
 			});
-
 		}
 		return taskDecision();
 	},
@@ -422,7 +270,7 @@ export default {
 		global.fightElement.tqName.innerHTML = 'Выполните задание';
 		let numbLeft = _.random(20);
 		let numbRight = _.random(20);
-		global.fightElement.taskContainer.innerHTML = templateComparison(numbLeft, numbRight);
+		global.fightElement.taskContainer.innerHTML = templateTaskModal.templateComparison(numbLeft, numbRight);
 		function taskDecision() {
 			let result;
 			return new Promise((resolve, reject) => {
@@ -439,9 +287,8 @@ export default {
 								value = '==='
 							}
 							this.setAttribute('data-stop', 'stop');
-							setTimeout(() => { this.removeAttribute('data-stop') }, 5000);
+							setTimeout(() => { this.removeAttribute('data-stop') }, buttonDisableTime);
 							result = handlerEnter(numbLeft, value, numbRight);
-
 							returnResult(result, resolve);
 						} else {
 							global.fightElement.reportQuest.setAttribute('class', 'report_quest empty');
@@ -452,10 +299,8 @@ export default {
 						return eval(`${numbLeft} ${value} ${numbRight}`);
 					}
 				};
-
 				global.fightElement.taskAply.addEventListener('click', window.clickHandlerComparison);
 			});
-
 		}
 		return taskDecision();
 	},
@@ -466,11 +311,10 @@ export default {
 		function taskDecision() {
 			return new Promise((resolve, reject) => {
 				let result;
-				global.fightElement.taskContainer.innerHTML = templateSpeech();
+				global.fightElement.taskContainer.innerHTML = templateTaskModal.templateSpeech();
 				document.querySelector('.speech .btn_speech').addEventListener('click', () => {
 					speechSynthesis.speak(text);
 				});
-				
 				removeEvents();
 				window.clickHandlerSpeech = function() {
 					if(!this.hasAttribute('data-stop')) {
@@ -481,19 +325,16 @@ export default {
 							return false;
 						}
 						this.setAttribute('data-stop', 'stop');
-						setTimeout(() => { this.removeAttribute('data-stop') }, 5000);
-
+						setTimeout(() => { this.removeAttribute('data-stop') }, buttonDisableTime);
 						result = (data.text === value) ? true : false;
 						returnResult(result, resolve);
 					}
 				};
-
 				global.fightElement.taskAply.addEventListener('click', window.clickHandlerSpeech);
 			});
 		}
 		return taskDecision();
-		
-	}
+	},
 
 
 

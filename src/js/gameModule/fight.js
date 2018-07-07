@@ -8,8 +8,16 @@ import heroAttack from './heroAttack.js';
 import monsterAttack from './monsterAttack.js';
 import resultSave from './resultSave.js';
 
+let modalAnimationTime = 1000;
+let monsterAttackTime = 1500;
+let btnFightPauseTime = 1500;
+let checkingLivePersonsTime = 500;
 
-
+const pause = async (time) => {
+	return new Promise((resolve) => {
+			setTimeout(resolve, time);
+	});
+};
 
 
 export default function() {
@@ -18,58 +26,53 @@ export default function() {
 	let attackActive = false;
 	btnsKick.forEach(elem => {
 		elem.addEventListener('click', function(){
-			if(!this.hasAttribute('data-stop')){
+			let that = this;
+			if(!that.hasAttribute('data-stop')){
 				modalAttack('hide');
-				setTimeout(()=>{modalTask('show')},1000);
+				setTimeout(()=>{modalTask('show')}, modalAnimationTime);
 				taskloader().then(result => {
 					return result;
-				}).then(result => {
+				}).then(async function(result) {
+					let heroAttackTime = 0;
 					if(result){
-						setTimeout(() => {heroAttack(this)}, 1500);
+						heroAttackTime = 1500;
+						setTimeout(() => {heroAttack(that);}, heroAttackTime);
 					}
-					return result;
-				}).then(result => {
-					if(result){
-						setTimeout(() => {
-							if( global.monster.state ) {
-								monsterAttack();
-							}
-						}, 4000);
-					} else {
-						setTimeout(() => {
-							if( global.monster.state ) {
-								monsterAttack();
-							}
-						}, 1500);
-					}
-				}).then(() => {
+					await pause(heroAttackTime);
+				}).then(async function() {
 					setTimeout(() => {
-						if(global.hero.health <= 0){
-							resultSave();
-							global.globalDate.resultCount.innerHTML = global.hero.score;
-							setTimeout(()=>{modalResult('show')},1000);
-						} else if (global.monster.health <= 0) {
-							monsterCreate();
-							global.fightElement.monsterRange.style.width = 100 +'%';
-							setTimeout(()=>{modalAttack('show')},1000);
-						} else {
-							attackActive = true;
+						if( global.monster.state ) {
+							monsterAttack();
 						}
-					}, 4200);
-
+					}, monsterAttackTime);
+					console.log(monsterAttackTime);
+					await pause(monsterAttackTime);
+				}).then(() => {
+					console.log('test');
+					if(global.hero.health <= 0){
+						resultSave();
+						global.globalDate.resultCount.innerHTML = global.hero.score;
+						setTimeout(()=>{modalResult('show')}, modalAnimationTime);
+					} else if (global.monster.health <= 0) {
+						monsterCreate();
+						setTimeout(()=>{modalAttack('show')}, modalAnimationTime);
+					} else {
+						console.log(modalAnimationTime);
+						attackActive = true;
+					}
 				});
 			}
 			btnsKick.forEach(item => {
 				item.setAttribute('data-stop', 'stop');
-				setTimeout(()=>{item.removeAttribute('data-stop')}, 1500);
+				setTimeout(()=>{item.removeAttribute('data-stop')}, btnFightPauseTime);
 			})
 		});
 	});
 	
 	setInterval(() => {
 		if(attackActive){
-			setTimeout(()=>{modalAttack('show')},1000);
+			setTimeout(()=>{modalAttack('show')}, modalAnimationTime);
 			attackActive = false;
 		}
-	}, 500);
+	}, checkingLivePersonsTime);
 }

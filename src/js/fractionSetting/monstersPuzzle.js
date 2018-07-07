@@ -2,7 +2,7 @@ export default {
 	monsterHead: [
 		{
 			name: 'life1',
-			img: 'src/img/monsters/head_life1.png',
+			img: 'img/head_life1.png',
 			health: 200,
 			defense: {
 				life: 0.05,
@@ -14,7 +14,7 @@ export default {
 		},
 		{
 			name: 'life2',
-			img: 'src/img/monsters/head_life2.png',
+			img: 'img/head_life2.png',
 			health: 225,
 			defense: {
 				life: 0.075,
@@ -26,7 +26,7 @@ export default {
 		},
 		{
 			name: 'chaos1',
-			img: 'src/img/monsters/head_chaos1.png',
+			img: 'img/head_chaos1.png',
 			health: 250,
 			defense: {
 				life: 0,
@@ -38,7 +38,7 @@ export default {
 		},
 		{
 			name: 'chaos2',
-			img: 'src/img/monsters/head_chaos2.png',
+			img: 'img/head_chaos2.png',
 			health: 225,
 			defense: {
 				life: 0,
@@ -50,7 +50,7 @@ export default {
 		},
 		{
 			name: 'shadow1',
-			img: 'src/img/monsters/head_shadow1.png',
+			img: 'img/head_shadow1.png',
 			health: 200,
 			defense: {
 				life: 0.1,
@@ -62,7 +62,7 @@ export default {
 		},
 		{
 			name: 'shadow2',
-			img: 'src/img/monsters/head_shadow2.png',
+			img: 'img/head_shadow2.png',
 			health: 200,
 			defense: {
 				life: 0.075,
@@ -76,7 +76,7 @@ export default {
 	monsterBody: [
 		{
 			name: 'life1',
-			img: 'src/img/monsters/body_life1.png',
+			img: 'img/body_life1.png',
 			health: 600,
 			defense: {
 				life: 0.2,
@@ -89,7 +89,7 @@ export default {
 		},
 		{
 			name: 'life2',
-			img: 'src/img/monsters/body_life2.png',
+			img: 'img/body_life2.png',
 			health: 650,
 			defense: {
 				life: 0.3,
@@ -102,7 +102,7 @@ export default {
 		},
 		{
 			name: 'chaos1',
-			img: 'src/img/monsters/body_chaos1.png',
+			img: 'img/body_chaos1.png',
 			health: 700,
 			defense: {
 				life: 0,
@@ -115,7 +115,7 @@ export default {
 		},
 		{
 			name: 'chaos2',
-			img: 'src/img/monsters/body_chaos2.png',
+			img: 'img/body_chaos2.png',
 			health: 650,
 			defense: {
 				life: 0,
@@ -128,7 +128,7 @@ export default {
 		},
 		{
 			name: 'shadow1',
-			img: 'src/img/monsters/body_shadow1.png',
+			img: 'img/body_shadow1.png',
 			health: 600,
 			defense: {
 				life: 0.4,
@@ -141,7 +141,7 @@ export default {
 		},
 		{
 			name: 'shadow2',
-			img: 'src/img/monsters/body_shadow2.png',
+			img: 'img/body_shadow2.png',
 			health: 600,
 			defense: {
 				life: 0.3,
@@ -156,7 +156,7 @@ export default {
 	monsterFoot: [
 		{
 			name: 'life1',
-			img: 'src/img/monsters/foot_life1.png',
+			img: 'img/foot_life1.png',
 			health: 200,
 			defense: {
 				life: 0.05,
@@ -168,7 +168,7 @@ export default {
 		},
 		{
 			name: 'life2',
-			img: 'src/img/monsters/foot_life2.png',
+			img: 'img/foot_life2.png',
 			health: 225,
 			defense: {
 				life: 0.075,
@@ -180,7 +180,7 @@ export default {
 		},
 		{
 			name: 'chaos1',
-			img: 'src/img/monsters/foot_chaos1.png',
+			img: 'img/foot_chaos1.png',
 			health: 250,
 			defense: {
 				life: 0,
@@ -192,7 +192,7 @@ export default {
 		},
 		{
 			name: 'chaos2',
-			img: 'src/img/monsters/foot_chaos2.png',
+			img: 'img/foot_chaos2.png',
 			health: 225,
 			defense: {
 				life: 0,
@@ -204,7 +204,7 @@ export default {
 		},
 		{
 			name: 'shadow1',
-			img: 'src/img/monsters/foot_shadow1.png',
+			img: 'img/foot_shadow1.png',
 			health: 200,
 			defense: {
 				life: 0.1,
@@ -216,7 +216,7 @@ export default {
 		},
 		{
 			name: 'shadow2',
-			img: 'src/img/monsters/foot_shadow2.png',
+			img: 'img/foot_shadow2.png',
 			health: 200,
 			defense: {
 				life: 0.075,

@@ -8,9 +8,6 @@ let elemsPage = global.globalDate;
 
 selectFraction();
 
-elemsPage.btnWelcome.addEventListener('click', ()=>{
-	showAndHidePage(elemsPage.welcomePage, elemsPage.registrePage);
-})
 
 elemsPage.formPersonal.addEventListener('submit', (e)=>{
 	e.preventDefault();

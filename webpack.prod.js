@@ -56,7 +56,12 @@ module.exports = {
                     ],
                     fallback: 'style-loader'
                 }),
-            },
+						},
+						{
+							test: /\.html$/,
+							exclude: /node_modules/,
+							use: {loader: 'html-loader'}
+						},
             {
                 // Load all images as base64 encoding if they are smaller than 8192 bytes
                 test: /\.(png|jpg|gif)$/,

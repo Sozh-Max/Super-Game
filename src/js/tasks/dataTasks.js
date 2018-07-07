@@ -168,57 +168,57 @@ export default {
 	javaScript: [
 		{
 			res: 'true',
-			img: 'src/img/js_task/js1.jpg',
+			img: 'img/js1.jpg',
 			variants: ['true', 'false', 'undefined', 'null']
 		},
 		{
 			res: '1208',
-			img: 'src/img/js_task/js2.jpg',
+			img: 'img/js2.jpg',
 			variants: ['12157', '119', '1208', 'false', 'undefined']
 		},
 		{
 			res: 'false',
-			img: 'src/img/js_task/js3.jpg',
+			img: 'img/js3.jpg',
 			variants: ['true', 'false', 'undefined', 'null']
 		},
 		{
 			res: 'false',
-			img: 'src/img/js_task/js4.jpg',
+			img: 'img/js4.jpg',
 			variants: ['true', 'false', 'NaN', 'null']
 		},
 		{
 			res: 'undefined',
-			img: 'src/img/js_task/js5.jpg',
+			img: 'img/js5.jpg',
 			variants: ['5', 'false', 'undefined', 'null']
 		},
 		{
 			res: 'false',
-			img: 'src/img/js_task/js6.jpg',
+			img: 'img/js6.jpg',
 			variants: ['true', 'false', 'undefined', 'null']
 		},
 		{
 			res: 'test',
-			img: 'src/img/js_task/js7.jpg',
+			img: 'img/js7.jpg',
 			variants: ['0', 'test', 'undefined', 'null']
 		},
 		{
 			res: '1',
-			img: 'src/img/js_task/js8.jpg',
+			img: 'img/js8.jpg',
 			variants: ['10', '1', 'undefined', 'null', 'false']
 		},
 		{
 			res: 'object',
-			img: 'src/img/js_task/js9.jpg',
+			img: 'img/js9.jpg',
 			variants: ['true', 'false', 'object', 'undefined', 'null']
 		},
 		{
 			res: 'false',
-			img: 'src/img/js_task/js10.jpg',
+			img: 'img/js10.jpg',
 			variants: ['true', 'false', 'undefined', 'null']
 		},
 		{
 			res: 'true',
-			img: 'src/img/js_task/js11.jpg',
+			img: 'img/js11.jpg',
 			variants: ['true', 'false', 'undefined', 'null']
 		}
 	],

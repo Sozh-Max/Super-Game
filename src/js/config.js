@@ -1,11 +1,11 @@
 import loadAudio from './audio/loadAudio.js';
 
-let backgroundMusic = loadAudio('../../src/audio/background.mp3', '1');
-let monsterAttackAudio = loadAudio('../../src/audio/monsterAttack.mp3', '1');
+let backgroundMusic = loadAudio('./audio/background.mp3', '1');
+let monsterAttackAudio = loadAudio('./audio/monsterAttack.mp3', '1');
 let heroAttackAudio = {
-	life: loadAudio('../../src/audio/life.mp3', '1'),
-	shadow: loadAudio('../../src/audio/shadow.mp3', '1'),
-	chaos: loadAudio('../../src/audio/chaos.mp3', '1'),
+	life: loadAudio('./audio/life.mp3', '1'),
+	shadow: loadAudio('./audio/shadow.mp3', '1'),
+	chaos: loadAudio('./audio/chaos.mp3', '1'),
 }
 
 backgroundMusic.dom.autoplay = true;
@@ -14,11 +14,9 @@ backgroundMusic.dom.loop = true;
 
 
 let globalDate = {
-	welcomePage: document.getElementById('welcome_section'),
 	registrePage: document.getElementById('registre_section'),
 	selectPage: document.getElementById('select_section'),
 	gamePage: document.getElementById('game_section'),
-	btnWelcome: document.getElementById('to_registre'),
 	formPersonal: document.getElementById('personal_form'),
 	btnStartGame: document.getElementById('start_game'),
 	inputPerson: document.getElementById('input_person'),

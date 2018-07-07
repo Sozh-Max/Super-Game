@@ -1,179 +1,4 @@
 
-@mixin flexbox {
-	display: -webkit-box;
-	display: -webkit-flex;
-	display: -moz-flex;
-	display: -ms-flexbox;
-	display: flex;
-}
-
-%flexbox { @include flexbox; }
-
-@mixin inline-flex {
-	display: -webkit-inline-box;
-	display: -webkit-inline-flex;
-	display: -moz-inline-flex;
-	display: -ms-inline-flexbox;
-	display: inline-flex;
-}
-
-%inline-flex { @include inline-flex; }
-
-@mixin flex-direction($value: row) {
-	@if $value == row-reverse {
-		-webkit-box-direction: reverse;
-		-webkit-box-orient: horizontal;
-	} @else if $value == column {
-		-webkit-box-direction: normal;
-		-webkit-box-orient: vertical;
-	} @else if $value == column-reverse {
-		-webkit-box-direction: reverse;
-		-webkit-box-orient: vertical;
-	} @else {
-		-webkit-box-direction: normal;
-		-webkit-box-orient: horizontal;
-	}
-	-webkit-flex-direction: $value;
-	-moz-flex-direction: $value;
-	-ms-flex-direction: $value;
-	flex-direction: $value;
-}
-
-@mixin flex-dir($args...) { @include flex-direction($args...); }
-
-@mixin flex-wrap($value: nowrap) {
-
-	-webkit-flex-wrap: $value;
-	-moz-flex-wrap: $value;
-	@if $value == nowrap {
-		-ms-flex-wrap: none;
-	} @else { 
-		-ms-flex-wrap: $value; 
-	}
-	flex-wrap: $value;
-}
-
-@mixin flex-flow($values: (row nowrap)) {
-	// No Webkit Box fallback.
-	-webkit-flex-flow: $values;
-	-moz-flex-flow: $values;
-	-ms-flex-flow: $values;
-	flex-flow: $values;
-}
-
-@mixin order($int: 0) {
-	-webkit-box-ordinal-group: $int + 1;
-	-webkit-order: $int;
-	-moz-order: $int;
-	-ms-flex-order: $int;
-	order: $int;
-}
-
-@mixin flex-grow($int: 0) {
-	-webkit-box-flex: $int;
-	-webkit-flex-grow: $int;
-	-moz-flex-grow: $int;
-	-ms-flex-positive: $int;
-	flex-grow: $int;
-}
-
-@mixin flex-shrink($int: 1) {
-	-webkit-flex-shrink: $int;
-	-moz-flex-shrink: $int;
-	-ms-flex-negative: $int;
-	flex-shrink: $int;
-}
-
-@mixin flex-basis($value: auto) {
-	-webkit-flex-basis: $value;
-	-moz-flex-basis: $value;
-	-ms-flex-preferred-size: $value;
-	flex-basis: $value;
-}
-
-@mixin flex($fg: 1, $fs: null, $fb: null) {
-    
-	$fg-boxflex: $fg;
-
-	@if type-of($fg) == 'list' {
-		$fg-boxflex: nth($fg, 1);
-	}
-
-	-webkit-box-flex: $fg-boxflex;
-	-webkit-flex: $fg $fs $fb;
-	-moz-box-flex: $fg-boxflex;
-	-moz-flex: $fg $fs $fb;
-	-ms-flex: $fg $fs $fb;
-	flex: $fg $fs $fb;
-}
-
-@mixin justify-content($value: flex-start) {
-	@if $value == flex-start {
-		-webkit-box-pack: start;
-		-ms-flex-pack: start;
-	} @else if $value == flex-end {
-		-webkit-box-pack: end;
-		-ms-flex-pack: end;
-	} @else if $value == space-between {
-		-webkit-box-pack: justify;
-		-ms-flex-pack: justify;
-	} @else if $value == space-around {
-		-ms-flex-pack: distribute;		
-	} @else {
-		-webkit-box-pack: $value;
-		-ms-flex-pack: $value;
-	}
-	-webkit-justify-content: $value;
-	-moz-justify-content: $value;
-	justify-content: $value;
-}
-
-@mixin flex-just($args...) { @include justify-content($args...); }
-
-@mixin align-items($value: stretch) {
-	@if $value == flex-start {
-		-webkit-box-align: start;
-		-ms-flex-align: start;
-	} @else if $value == flex-end {
-		-webkit-box-align: end;
-		-ms-flex-align: end;
-	} @else {
-		-webkit-box-align: $value;
-		-ms-flex-align: $value;
-	}
-	-webkit-align-items: $value;
-	-moz-align-items: $value;
-	align-items: $value;
-}
-
-@mixin align-self($value: auto) {
-	// No Webkit Box Fallback.
-	-webkit-align-self: $value;
-	-moz-align-self: $value;
-	@if $value == flex-start {
-		-ms-flex-item-align: start;
-	} @else if $value == flex-end {
-		-ms-flex-item-align: end;
-	} @else {
-		-ms-flex-item-align: $value;
-	}
-	align-self: $value;
-}
-
-@mixin align-content($value: stretch) {
-	// No Webkit Box Fallback.
-	-webkit-align-content: $value;
-	-moz-align-content: $value;
-	@if $value == flex-start {
-		-ms-flex-line-pack: start;
-	} @else if $value == flex-end {
-		-ms-flex-line-pack: end;
-	} @else {
-		-ms-flex-line-pack: $value;
-	}
-	align-content: $value;
-}
-
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
   margin: 0;
   padding: 0;
@@ -244,14 +69,14 @@ body{
 }
 
 .wrapper{
-	@include flexbox;
-	@include flex-direction(column);
+	display: flex;
+	flex-direction: column;
 	min-height: 100vh;
 	min-width: 1300px;
 	.main{
-		@include flex-grow(1);
-		@include flex-shrink(0);
-		@include flex-basis(auto);
+		flex-grow: 1;
+		flex-shrink: 0;
+		flex-basis: auto;
 	}
 }
 
@@ -590,17 +415,11 @@ body{
 	}
 }
 
-/*---welcome_section---*/
+/*---registre_section---*/
 
-.welcome_section{
+.registre_section{
 	text-align: center;
-	background: url(../src/img/select_bg.jpg) center repeat;
-	.container{
-		height: 100%;
-		@include flexbox;
-		@include flex-direction(column);
-		@include justify-content(center);
-	}
+	background: url(../img/select_bg.jpg) center repeat;
 	.welcom_text{
 		font-size: 24px;
 		margin-bottom: 50px;
@@ -610,37 +429,11 @@ body{
 			margin-top: 15px;
 		}
 	}
-	.welcom_link{
-		.prev_link{
-			margin-bottom: 20px;
-			.to_game{
-				padding: 8px 32px;
-				color: #fff;
-				font-size: 18px;
-				background: rgb(45, 0, 151);
-				transition: 100ms;
-				text-decoration: none;
-				border-radius: 15px;
-				border: none;
-				cursor: pointer;
-				&:hover{
-					background: rgb(27, 0, 90);
-				}
-			}
-		}
-	}
-}
-
-/*---registre_section---*/
-
-.registre_section{
-	text-align: center;
-	background: url(../src/img/select_bg.jpg) center repeat;
 	.container{
 		height: 100%;
-		@include flexbox;
-		@include flex-direction(column);
-		@include justify-content(center);
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
 	}
 	.prev_link{
 		margin-bottom: 20px;
@@ -687,12 +480,12 @@ body{
 
 .select_section{
 	text-align: center;
-	background: url(../src/img/select_bg.jpg) center repeat;
+	background: url(../img/select_bg.jpg) center repeat;
 	.container{
 		height: 100%;
-		@include flexbox;
-		@include flex-direction(column);
-		@include justify-content(center);
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
 	}
 	.select_fraction{
 		margin-bottom: 45px;
@@ -703,8 +496,8 @@ body{
 		}
 	}
 	.fraction_contain{
-		@include flexbox;
-		@include justify-content(space-between);
+		display: flex;
+		justify-content: space-between;
 		width: 500px;
 		margin-left: auto;
 		margin-right: auto;
@@ -788,16 +581,16 @@ body{
 	padding-top: 0;
 	padding-bottom: 0;
 	text-align: center;
-	background: url(../src/img/gazon.jpg) center repeat;
-	@include flexbox;
-	@include flex-direction(column);
+	background: url(../img/gazon.jpg) center repeat;
+	display: flex;
+	flex-direction: column;
 	.game_field{
-		@include flex-grow(1);
-		@include flex-shrink(0);
-		@include flex-basis(auto);
-		@include flexbox;
-		@include justify-content(space-between);
-		@include align-items(center);
+		flex-grow: 1;
+		flex-shrink: 0;
+		flex-basis: auto;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 		width: 1300px;
 		padding-left: 15px;
 		padding-right: 15px;
@@ -819,7 +612,7 @@ body{
 				right: 0;
 				left: 0;
 				bottom: 0;
-				background: url(../src/img/bee.gif) center no-repeat;
+				background: url(../img/bee.gif) center no-repeat;
 				background-size: contain;
 				z-index: 20;
 			}
@@ -868,7 +661,7 @@ body{
 				right: 0;
 				left: 0;
 				bottom: 0;
-				background: url(../src/img/fire.gif) center no-repeat;
+				background: url(../img/fire.gif) center no-repeat;
 				background-size: cover;
 				z-index: 20;
 			}
@@ -882,7 +675,7 @@ body{
 				right: 0;
 				left: 0;
 				bottom: 0;
-				background: url(../src/img/mouse.gif) center top no-repeat;
+				background: url(../img/mouse.gif) center top no-repeat;
 				z-index: 20;
 			}
 		}
@@ -895,23 +688,23 @@ body{
 				right: 0;
 				left: 0;
 				bottom: 0;
-				background: url(../src/img/circle.gif) center no-repeat;
+				background: url(../img/circle.gif) center no-repeat;
 				background-size: cover;
 				z-index: 20;
 			}
 		}
 	}
 	.game_tablo{
-		@include flex-grow(0);
-		@include flex-shrink(0);
-		@include flex-basis(auto);
+		flex-grow: 0;
+		flex-shrink: 0;
+		flex-basis: auto;
 		background: rgb(218, 211, 255);
 	}
 	.gt_inner{
 		height: 120px;
-		@include flexbox;
-		@include justify-content(space-between);
-		@include align-items(center);
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 		.hero_block{
 			width: 440px;
 			.hero_name{
@@ -931,7 +724,7 @@ body{
 						left: 15px;
 						position: absolute;
 						display: block;
-						background: url(../src/img/ico_life.png) center no-repeat;
+						background: url(../img/ico_life.png) center no-repeat;
 						background-size: 90%;
 					}
 				}
@@ -944,7 +737,7 @@ body{
 						left: 15px;
 						position: absolute;
 						display: block;
-						background: url(../src/img/ico_chaos.png) center no-repeat;
+						background: url(../img/ico_chaos.png) center no-repeat;
 						background-size: 90%;
 					}
 				}
@@ -957,7 +750,7 @@ body{
 						left: 15px;
 						position: absolute;
 						display: block;
-						background: url(../src/img/ico_shadow.png) center no-repeat;
+						background: url(../img/ico_shadow.png) center no-repeat;
 						background-size: 90%;
 					}
 				}
@@ -1013,7 +806,7 @@ body{
 						right: 15px;
 						position: absolute;
 						display: block;
-						background: url(../src/img/ico_life.png) center no-repeat;
+						background: url(../img/ico_life.png) center no-repeat;
 						background-size: 90%;
 					}
 				}
@@ -1026,7 +819,7 @@ body{
 						right: 15px;
 						position: absolute;
 						display: block;
-						background: url(../src/img/ico_chaos.png) center no-repeat;
+						background: url(../img/ico_chaos.png) center no-repeat;
 						background-size: 90%;
 					}
 				}
@@ -1039,7 +832,7 @@ body{
 						right: 15px;
 						position: absolute;
 						display: block;
-						background: url(../src/img/ico_shadow.png) center no-repeat;
+						background: url(../img/ico_shadow.png) center no-repeat;
 						background-size: 90%;
 					}
 				}
@@ -1090,16 +883,16 @@ body{
 		}
 	}
 	.game_panel{
-		@include flex-grow(0);
-		@include flex-shrink(0);
-		@include flex-basis(auto);
+		flex-grow: 0;
+		flex-shrink: 0;
+		flex-basis: auto;
 		background: rgb(218, 211, 255);
 	}
 	.gp_inner{
 		height: 100px;
-		@include flexbox;
-		@include justify-content(center);
-		@include align-items(center);
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 	.btn_panel{
 		margin-left: 15px;
@@ -1140,12 +933,12 @@ body{
 
 .game_result{
 	text-align: center;
-	background: url(../src/img/select_bg.jpg) center repeat;
+	background: url(../img/select_bg.jpg) center repeat;
 	.container{
 		height: 100%;
-		@include flexbox;
-		@include flex-direction(column);
-		@include justify-content(center);
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
 	}
 	.result_name{
 		font-weight: 700;
@@ -1166,9 +959,9 @@ body{
 				margin-bottom: 10px;
 				font-size: 24px;
 				.li_wrap{
-					@include flexbox;
-					@include justify-content(space-between);
-					@include align-items(center);
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
 				}
 				.name{
 					color: #ff0000;
@@ -1388,9 +1181,9 @@ body{
 		font-size: 24px;
 		font-weight: 500;
 		margin-bottom: 20px;
-		@include flexbox;
-		@include justify-content(center);
-		@include align-items(center);
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		.input_symbol{
 			width: 40px;
 			height: 34px;

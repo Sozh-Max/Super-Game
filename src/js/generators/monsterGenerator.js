@@ -17,5 +17,4 @@ export default function() {
 	global.monster.restore = Number((monsterHead.restore + monsterBody.restore + monsterFoot.restore).toFixed(3));
 	global.monster.damage = monsterHead.damage + monsterBody.damage + monsterFoot.damage;
 	global.monster.state = true;
-	global.fightElement.monsterRange.style.width = 100 + '%';
 }
